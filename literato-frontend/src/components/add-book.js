@@ -5,8 +5,12 @@ export default class AddNewBook extends React.Component {
     super(props)
     this.state = {
       form: {
-        title: ''
-      }
+        title: '',
+        authors: '',
+        images: '',
+        description: ''
+      },
+      user: 'anonymous'
     }
   }
   handleChange(event){
@@ -24,11 +28,12 @@ export default class AddNewBook extends React.Component {
         <h3>Add New Book</h3>
         <label>Title:</label>
         <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
+        <input type="text" name="authors" onChange={this.handleChange.bind(this)} value={this.state.form.authors} />
+        <input type="text" name="description" onChange={this.handleChange.bind(this)} value={this.state.form.description} />
+        <input type="text" name="image" onChange={this.handleChange.bind(this)} value={this.state.form.image} />
         <button onClick={this.handleSubmit.bind(this)}>Add Book</button>
       </form>
-      <ul>
-        <li></li>
-      </ul>
+
     )
   }
 }
