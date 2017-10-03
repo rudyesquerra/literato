@@ -26,6 +26,9 @@ export default class AddNewBook extends React.Component {
         <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
         <button onClick={this.handleSubmit.bind(this)}>Add Book</button>
       </form>
+      <ul>
+        <li></li>
+      </ul>
     )
   }
 }
