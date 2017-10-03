@@ -1,15 +1,23 @@
 var express = require('express');
 var bodyParser = require('body-parser')
+var validator = require('express-validator')
 var app = express();
+var Book = require('./models').Book
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
+app.use(validator())
 
 app.get('/', (req, res) => {
   res.json({message: 'API Example App'})
 });
-
-app.post('/add-book', (req, res) => {
+app.get('/books', (req, res) => {
+  Book.findAll().then((books) => {
+    res.status(200)
+    res.json({books: books})
+  })
+})
+app.post('/', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
     req.checkBody('authors', 'Is required').notEmpty()
     req.checkBody('description', 'Is required').notEmpty()
