@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddNewBook from './components/add-book'
 import UserBookList from './components/user-book-list'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 import './App.css';
 
 class App extends Component {
@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   handleNewBook(params){
-
     fetch(`${this.state.apiUrl}/books`,
     {
       body: JSON.stringify(params),
@@ -37,6 +36,7 @@ class App extends Component {
     }
   )
     .then((rawResponse) => {
+      console.log(rawResponse)
       return rawResponse.json()
     })
     .then((parsedResponse) => {
@@ -58,16 +58,19 @@ class App extends Component {
   render() {
       console.log("from app.js" + this.state.books);
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to Literato</h1>
-        </header>
-        <UserBookList books={this.state.books} />
-        <AddNewBook />
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Welcome to Literato</h1>
+          </header>
+          <UserBookList books={this.state.books} />
+          <AddNewBook onSubmit={this.handleNewBook.bind(this)}/>
+          {this.state.newBookSuccess && <Redirect to='/books'/>}
+          <p className="App-intro">
+            To get started, edit <code>src/App.js</code> and save to reload.
+          </p>
+        </div>
+      </Router>
     );
   }
 }
