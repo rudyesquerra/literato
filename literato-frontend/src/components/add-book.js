@@ -7,7 +7,7 @@ export default class AddNewBook extends React.Component {
       form: {
         title: '',
         authors: '',
-        images: '',
+        image: '',
         description: ''
       },
       user: 'anonymous'
@@ -27,10 +27,13 @@ export default class AddNewBook extends React.Component {
       <form>
         <h3>Add New Book</h3>
         <label>Title:</label>
-        <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
-        <input type="text" name="authors" onChange={this.handleChange.bind(this)} value={this.state.form.authors} />
-        <input type="text" name="description" onChange={this.handleChange.bind(this)} value={this.state.form.description} />
-        <input type="text" name="image" onChange={this.handleChange.bind(this)} value={this.state.form.image} />
+          <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
+        <label>Authors:</label>
+          <input type="text" name="authors" onChange={this.handleChange.bind(this)} value={this.state.form.authors} />
+        <label>Description:</label>
+          <input type="text" name="description" onChange={this.handleChange.bind(this)} value={this.state.form.description} />
+        <label>Image:</label>
+          <input type="text" name="image" onChange={this.handleChange.bind(this)} value={this.state.form.image} />
         <button onClick={this.handleSubmit.bind(this)}>Add Book</button>
       </form>
 
