@@ -40,5 +40,5 @@ app.post('/books', (req, res) => {
           res.json({errors: {validations: validationErrors.array()}})
         }
       })
-  })
+})
 module.exports = app

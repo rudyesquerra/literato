@@ -13,6 +13,7 @@ class UserBookList extends React.Component {
               <li key={index}>
                 <div>
                   <h4 className="book-title">{book.title}</h4>
+                  <h5 className="book-authors">{book.authors}</h5>
                 </div>
               </li>
             )
