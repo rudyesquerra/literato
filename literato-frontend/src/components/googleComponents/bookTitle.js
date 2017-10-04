@@ -8,10 +8,12 @@ class BookTitle extends Component {
 		this.state = {};
 	}
 	render(){
+
+		
 		return (
 		<Row className='book' onClick={this.props.onClick}>
 			<Col md={8}>
-				<span clasName='title'>{this.props.title}</span>
+				<span className='title'>{this.props.title}</span>
 			</Col>
 			<Col md={4}>
 				<div className='authors'>{(this.props.authors) ?

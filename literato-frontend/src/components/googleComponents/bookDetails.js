@@ -18,10 +18,10 @@ render(){
 			<Well>
 				<Row>
 					<Col md={2}>
-						<Image src={this.state.thumbnail} thumbnail />
+						<Image className='thumbnail' src={this.state.thumbnail} thumbnail />
 					</Col>
 					<Col md={10}>
-						<p>{this.state.description}</p>
+						<p className='description'>{this.state.description}</p>
 					</Col>
 				</Row>
 			</Well>
