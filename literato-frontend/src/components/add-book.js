@@ -5,30 +5,41 @@ export default class AddNewBook extends React.Component {
     super(props)
     this.state = {
       form: {
-        title: ''
-      }
+        title: '',
+        authors: '',
+        image: '',
+        description: ''
+      },
+      user: 'anonymous'
     }
   }
+
   handleChange(event){
     const formState = Object.assign({}, this.state.form)
-    formState[event.target.title] = event.target.value
+    formState[event.target.name] = event.target.value
     this.setState({form: formState})
   }
-  handleSubmit(){
+
+  handleSubmit(event){
     this.props.onSubmit(this.state.form)
+    event.preventDefault()
   }
 
   render(){
     return (
-      <form>
+      <form onSubmit={this.handleSubmit.bind(this)}>
         <h3>Add New Book</h3>
         <label>Title:</label>
-        <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
-        <button onClick={this.handleSubmit.bind(this)}>Add Book</button>
+          <input type="text" name="title" onChange={this.handleChange.bind(this)} value={this.state.form.title} />
+        <label>Authors:</label>
+          <input type="text" name="authors" onChange={this.handleChange.bind(this)} value={this.state.form.authors} />
+        <label>Description:</label>
+          <input type="text" name="description" onChange={this.handleChange.bind(this)} value={this.state.form.description} />
+        <label>Image:</label>
+          <input type="text" name="image" onChange={this.handleChange.bind(this)} value={this.state.form.image} />
+        <button type='submit'>Add Book</button>
       </form>
-      <ul>
-        <li></li>
-      </ul>
+
     )
   }
 }
