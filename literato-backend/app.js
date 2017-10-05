@@ -21,14 +21,13 @@ app.get('/books', (req, res) => {
 app.post('/books', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
     req.checkBody('authors', 'Is required').notEmpty()
-    req.checkBody('description', 'Is required').notEmpty()
     req.checkBody('image', 'Is required').notEmpty()
     req.getValidationResult()
       .then((validationErrors) => {
         if(validationErrors.isEmpty()){
           Book.create({
             title: req.body.title,
-            author: req.body.authors,
+            authors: req.body.authors,
             description: req.body.description,
             image: req.body.image
           }).then((book) => {
