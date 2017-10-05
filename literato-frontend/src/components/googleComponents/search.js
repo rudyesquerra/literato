@@ -6,6 +6,8 @@ import {
 	Button
 } from 'react-bootstrap';
 import SearchResultsList from './searchResultsList'
+import './search.css'
+
 
 
 class SearchToAdd extends Component {

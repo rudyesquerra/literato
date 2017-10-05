@@ -28,7 +28,7 @@ app.post('/books', (req, res) => {
         if(validationErrors.isEmpty()){
           Book.create({
             title: req.body.title,
-            author: req.body.authors,
+            authors: req.body.authors,
             description: req.body.description,
             image: req.body.image
           }).then((book) => {

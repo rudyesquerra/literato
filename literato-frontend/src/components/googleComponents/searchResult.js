@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ToggleDisplay from 'react-toggle-display';
 import BookTitle from './bookTitle'
 import BookDetails from './bookDetails';
+import './searchResult.css'
+
 
 class SearchResult extends Component {
 	constructor(props){

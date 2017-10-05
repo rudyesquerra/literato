@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Well, Image } from 'react-bootstrap';
-
+import './bookDetails.css'
 
 class BookDetails extends Component {
 	constructor(props){
@@ -20,8 +20,8 @@ render(){
 					<Col md={2}>
 						<Image className='thumbnail' src={this.state.thumbnail} thumbnail />
 					</Col>
-					<Col md={10}>
-						<p className='description'>{this.state.description}</p>
+					<Col md={8}>
+						<span className='description'>{this.state.description}</span>
 					</Col>
 				</Row>
 			</Well>

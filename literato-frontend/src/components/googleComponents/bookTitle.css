@@ -1,0 +1,13 @@
+.title {
+	float: left;
+	margin-left: 20px;
+}
+
+.authors {
+	float: right;
+	margin-right: 20px;
+}
+
+.clear {
+	clear: both;
+}
