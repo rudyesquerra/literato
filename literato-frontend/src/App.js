@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SearchToAdd from './components/googleComponents/search'
 import AddNewBook from './components/add-book'
 import UserBookList from './components/user-book-list'
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
@@ -62,6 +63,8 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Welcome to Literato</h1>
           </header>
+          <SearchToAdd />
+
           <UserBookList books={this.state.books} />
           <AddNewBook onSubmit={this.handleNewBook.bind(this)}/>
           {this.state.newBookSuccess && <Redirect to='/books'/>}
