@@ -9,8 +9,6 @@ class BookTitle extends Component {
 		this.state = {};
 	}
 	render(){
-
-
 		return (
 		<Row className='book' onClick={this.props.onClick}>
 			<Col md={8}>

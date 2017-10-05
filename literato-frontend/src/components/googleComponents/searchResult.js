@@ -22,12 +22,11 @@ class SearchResult extends Component {
 			<div>
 				<BookTitle {...this.props.volumeInfo} onClick={this.toggleDetails.bind(this)}/>
 				<ToggleDisplay show={this.state.showDetails}>
-					<BookDetails {...this.props.volumeInfo} />
+					<BookDetails {...this.props.volumeInfo}/>
 				</ToggleDisplay>
 			</div>
 		)
 	}
-
 }
 
 export default SearchResult;
