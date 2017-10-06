@@ -23,8 +23,6 @@ app.get('/books', (req, res) => {
 
 app.post('/books', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
-    req.checkBody('authors', 'Is required').notEmpty()
-    req.checkBody('image', 'Is required').notEmpty()
     req.getValidationResult()
 		.then((validationErrors) => {
         if(validationErrors.isEmpty()){
@@ -55,7 +53,5 @@ app.post('/books/destroy', (req, response) => {
     response.send("Error, couldn't fetch Book")
   })
 })
-
-
 
 module.exports = app

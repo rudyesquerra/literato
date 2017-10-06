@@ -5,7 +5,6 @@ import BookDetails from './bookDetails';
 import { Redirect } from 'react-router-dom'
 import './searchResult.css'
 
-
 class SearchResult extends Component {
 	constructor(props){
 		super(props);
@@ -13,7 +12,6 @@ class SearchResult extends Component {
 			apiUrl: 'http://localhost:3000',
 			showDetails: false,
 			newBookSuccess: false
-
 		};
 	}
 
@@ -42,7 +40,6 @@ class SearchResult extends Component {
 			}
 		)
 		.then((rawResponse) => {
-			console.log(rawResponse)
 			return rawResponse.json()
 		})
 		.then((parsedResponse) => {
@@ -62,9 +59,15 @@ class SearchResult extends Component {
 	}
 
 	handleSubmit(event){
+		let author;
+		if(this.props.volumeInfo.authors == undefined){
+			author = "No Authors Found"
+		}else{
+			author = this.props.volumeInfo.authors[0]
+		}
 		var newBook = {
 			title: this.props.volumeInfo.title,
-			authors: this.props.volumeInfo.authors[0],
+			authors: author,
 			description: this.props.volumeInfo.description,
 			image: this.props.volumeInfo.imageLinks.thumbnail
 		}
