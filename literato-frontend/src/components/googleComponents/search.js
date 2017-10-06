@@ -37,13 +37,16 @@ class SearchToAdd extends Component {
 
     render(){
       return (
-		  <Row>
-                <Col md={12}>
-                  <FormControl type="text" id='searchText' placeholder="Search" onKeyPress={this.handleKeyPress.bind(this)}/>
-                  <Button id="search" bsStyle="primary" onClick={this.search.bind(this)}> Search</Button>
-                  <SearchResultsList books={this.state.books}></SearchResultsList>
-                </Col>
-              </Row>
+				<div className="main">
+				  <Row>
+			      <Col md={10}>
+			        <FormControl type="text" id='searchText' placeholder="Search" onKeyPress={this.handleKeyPress.bind(this)} />
+			        	<Button id="search" bsStyle="primary" onClick={this.search.bind(this)}>Search
+								</Button>
+			        	<SearchResultsList books={this.state.books} />
+			      </Col>
+		      </Row>
+				</div>
 		  )
     }
   }

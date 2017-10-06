@@ -31,7 +31,7 @@ deleteBook(id) {
     return(
       <div>
         <h1>My Books</h1>
-        <ul>
+        <ol>
           {this.props.books.map((book, index) => {
             return(
               <li key={index}>
@@ -47,7 +47,7 @@ deleteBook(id) {
               </li>
             )
           })}
-        </ul>
+        </ol>
       </div>
 
     )
