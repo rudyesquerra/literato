@@ -18,6 +18,7 @@ app.get('/books', (req, res) => {
     res.json({books: books})
   })
 })
+
 app.post('/books', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
     req.checkBody('authors', 'Is required').notEmpty()
@@ -40,4 +41,17 @@ app.post('/books', (req, res) => {
         }
       })
 })
+
+app.post('/books/destroy', (req, response) => {
+  req.checkBody('id', 'Is required').notEmpty()
+  Book.findById(req.body.id).then(function(book){
+    response.status(200)
+    response.json({book: book})
+    book.destroy()
+  }).catch((error) => {
+    response.send("Error, couldn't fetch Book")
+  })
+})
+
+
 module.exports = app

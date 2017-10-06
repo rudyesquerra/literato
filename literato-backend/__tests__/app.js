@@ -9,12 +9,14 @@ describe("App", ()=>{
       expect(response.statusCode).toBe(200)
     })
   })
+
   it("Lists books", () => {
     return request(app).get("/books").then(response => {
       expect(response.statusCode).toBe(200)
       expect(response.body.books[0].title).toBe('BOOK 1')
     })
   })
+
   it("Adds books", () => {
     return request(app).post("/books")
     .send({
@@ -31,6 +33,7 @@ describe("App", ()=>{
       expect(response.body.book.image).toBe('asdfasdf')
     })
   })
+
   it("Validates title when adding a book", ()=>{
     return request(app)
       .post("/books")
@@ -46,6 +49,7 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
+
   it("Validates authors when adding a book", ()=>{
     return request(app)
       .post("/books")
@@ -61,6 +65,7 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
+
   it("Validates description when adding a book", ()=>{
     return request(app)
       .post("/books")
@@ -76,6 +81,7 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
+
   it("Validates image when adding a book", ()=>{
     return request(app)
       .post("/books")
@@ -91,4 +97,13 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
+
+  it("Deletes book", ()=>{
+    return request(app)
+      .post("/books/destroy")
+      .then(response =>{
+        expect(this.books).toBe(undefined)
+      })
+  })
+
 })
