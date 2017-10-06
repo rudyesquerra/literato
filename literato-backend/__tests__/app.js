@@ -81,7 +81,7 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
-  
+
   it("Validates image when adding a book", ()=>{
     return request(app)
       .post("/books")
@@ -97,4 +97,13 @@ describe("App", ()=>{
         expect(error.msg).toBe('Is required')
       })
   })
+
+  it("Deletes book", ()=>{
+    return request(app)
+      .post("/books/destroy")
+      .then(response =>{
+        expect(this.books).toBe(undefined)
+      })
+  })
+
 })

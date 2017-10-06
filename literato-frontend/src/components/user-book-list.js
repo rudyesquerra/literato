@@ -1,13 +1,36 @@
 import React, { Component } from 'react'
 
-
 class UserBookList extends React.Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        apiUrl: 'http://localhost:3000'
+      }
+  }
+
+deleteBook(id) {
+  fetch(`${this.state.apiUrl}/books/destroy`,
+  {
+    body: JSON.stringify({id: id}),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST'
+  }
+)
+  .then((rawResponse) => {
+    return rawResponse.json()
+  })
+  .then((parsedResponse) => {
+      console.log(parsedResponse)
+  })
+}
 
 	render() {
 	    return(
 	    <div>
 	        <h1>My Books</h1>
-	        <ol>
+	        <ul>
 	        	{this.props.books.map((book, index) => {
 	            	return(
 	            	<li key={index}>
@@ -15,12 +38,15 @@ class UserBookList extends React.Component {
 				            <h4 className="book-title">{book.title}</h4>
 				            <h5 className="book-authors">{book.authors}</h5>
 							<h5 className="book-description">{book.description}</h5>
-							<h5 className="book-image">{book.image}</h5>
+							<h5>{book.id}</h5>
+							<button onClick={this.deleteBook.bind(this, book.id)}>
+							Delete book
+							</button>
 	                	</div>
 	            	</li>
 	            	)
 	          	})}
-	        </ol>
+	        </ul>
 	    </div>
 	    )
 	}
