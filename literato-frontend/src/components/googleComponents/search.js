@@ -34,7 +34,8 @@ class SearchToAdd extends Component {
 	        dataType: 'json'
         })
         .then((r) => r.json())
-        .then(books => self.setState({books: books.items}) )
+        .then(books => self.setState({books: books.items})
+        )}
     }
 
     render(){

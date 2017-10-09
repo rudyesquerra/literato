@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 .App {
     display: flex;
 }
@@ -8,26 +6,18 @@ body {
     height: 100vh;
 }
 
->>>>>>> dashboard_styling
 .App-logo {
     display: block;
     margin: 0 auto;
 }
 
-<<<<<<< HEAD
-.App-header {
-  background-color: #222;
-  height: 60px;
-  padding: 20px;
-  color: white;
-=======
 .header {
     background-color: #0084b4;
     height: 100px;
     flex: 1 100%;
     padding: 20px;
     color: white;
->>>>>>> dashboard_styling
+
 }
 
 .sidebar {
