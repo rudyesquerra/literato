@@ -44,6 +44,24 @@ app.post('/books', (req, res) => {
         })
 })
 
+app.post('/user', (req, res) => {
+    req.checkBody('email', 'Is required').notEmpty()
+    req.getValidationResult()
+        .then((validationErrors) => {
+            if(validationErrors.isEmpty()){
+                User.find({where: {email: req.body.email}}).then((user) => {
+                    res.status(201)
+                    res.json({user: user})
+                }).catch((error) => {
+                    res.status(400)
+                    res.json({errors: {message: 'User not found'}})
+                })
+            } else {
+                res.status(400)
+                res.json({errors: {validations: validationErrors.array()}})
+            }
+        })
+})
 //for adding a user aka signup
 app.post('/signup', (req, res) => {
   //checking that form is properly filled out
