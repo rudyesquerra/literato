@@ -9,12 +9,12 @@ import SearchResultsList from './searchResultsList'
 
 
 class SearchToAdd extends Component {
-	constructor(props){
-      super(props);
-      this.state = {
-        books: [],
-        searchText: ""
-      };
+    constructor(props){
+        super(props);
+        this.state = {
+            books: [],
+            searchText: ""
+        };
     }
     handleKeyPress(event){
       let self = this;
@@ -24,6 +24,7 @@ class SearchToAdd extends Component {
         self.search()
       }
     }
+
     search() {
       let self = this
       fetch('https://www.googleapis.com/books/v1/volumes?q=' + self.state.searchText + '&maxResults=40', {
@@ -34,21 +35,20 @@ class SearchToAdd extends Component {
         .then(books => self.setState({books: books.items}) )
     }
 
-
     render(){
-      return (
-				<div className="main">
-				  <Row>
-			      <Col md={10}>
-			        <FormControl type="text" id='searchText' placeholder="Search" onKeyPress={this.handleKeyPress.bind(this)} />
-			        	<Button id="search" bsStyle="primary" onClick={this.search.bind(this)}>Search
-								</Button>
-			        	<SearchResultsList books={this.state.books} />
-			      </Col>
-		      </Row>
-				</div>
-		  )
+        return (
+            <div className="main">
+                <Row>
+                    <Col md={10}>
+                        <FormControl type="text" id='searchText' placeholder="Search" onKeyPress={this.handleKeyPress.bind(this)} />
+                            <Button id="search" bsStyle="primary" onClick={this.search.bind(this)}>Search
+                            </Button>
+                            <SearchResultsList books={this.state.books} />
+                    </Col>
+                </Row>
+            </div>
+		)
     }
-  }
+}
 
 export default SearchToAdd;

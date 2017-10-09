@@ -1,37 +1,39 @@
 .App {
-	display: flex;
+    display: flex;
 }
+
 body {
-	height: 100vh;
+    height: 100vh;
 }
+
 .App-logo {
-  display: block;
-	margin: 0 auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .header {
-  background-color: #0084b4;
-  height: 100px;
-	flex: 1 100%;
-  padding: 20px;
-  color: white;
+    background-color: #0084b4;
+    height: 100px;
+    flex: 1 100%;
+    padding: 20px;
+    color: white;
 }
 
 .sidebar {
-	background: #E6ECF0;
-	flex: 1;
-	flex-direction: column;
-	max-width: 15%;
-	min-height: 100vh;
-	color: #0084b4;
+    background: #E6ECF0;
+    flex: 1;
+    flex-direction: column;
+    max-width: 15%;
+    min-height: 100vh;
+    color: #0084b4;
 }
 
 .main {
-	flex: 2;
+    flex: 2;
 }
 
 .sidebar ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 
@@ -41,5 +43,5 @@ body {
 
 
 .book {
-	margin: 50px 0;
+    margin: 50px 0;
 }

@@ -4,13 +4,13 @@ import BookDetails from '../googleComponents/bookDetails';
 import { mount } from 'enzyme'
 
 const book = {
-	description: 'NEW YORK TIMES BESTSELLER'
+    description: 'NEW YORK TIMES BESTSELLER'
 }
 
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<BookDetails {...book} />, div);
+    const div = document.createElement('div');
+    ReactDOM.render(<BookDetails {...book} />, div);
 });
 
 it('renders book description', () => {

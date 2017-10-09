@@ -4,15 +4,15 @@ import Sidebar from './sidebar'
 import SearchToAdd from '../googleComponents/search'
 
 class Dashboard extends Component {
-  render() {
-    return(
-      <div>
-        <Header />
-        <SearchToAdd />
-        <Sidebar />
-      </div>
-    )
-  }
+    render() {
+        return(
+            <div>
+                <Header />
+                <SearchToAdd />
+                <Sidebar />
+            </div>
+        )
+    }
 }
 
 export default Dashboard;

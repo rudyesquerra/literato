@@ -7,50 +7,48 @@ import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      apiUrl: 'http://localhost:3000',
-      books: [],
-      newBookSuccess: false,
-      errors: null
+    constructor(props) {
+        super(props)
+        this.state = {
+            apiUrl: 'http://localhost:3000',
+            books: [],
+            newBookSuccess: false,
+            errors: null
+        }
     }
-  }
 
   componentWillMount() {
-    fetch(`${this.state.apiUrl}/books`)
-    .then((rawResponse) => {
-      return rawResponse.json()
-    })
-    .then((parsedResponse) => {
-      this.setState({books: parsedResponse.books})
-    })
+      fetch(`${this.state.apiUrl}/books`)
+      .then((rawResponse) => {
+          return rawResponse.json()
+      })
+      .then((parsedResponse) => {
+          this.setState({books: parsedResponse.books})
+      })
   }
 
 
+    render() {
+        return (
+            <Router>
+                <div>
+                    <Route exact path='/' render={props => (
+                        <div className="App">
+                            <Header />
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <Route exact path='/' render={props => (
-            <div className="App">
-              <Header />
-
-              <UserBookList books={this.state.books} />
-              {this.state.newBookSuccess && <Redirect to='/books'/>}
-              </div>
-          )}/>
-
-            <Route exact path='/dashboard' render={props => (
-              <div>
-                <Dashboard />
-              </div>
-            )}/>
-        </div>
-      </Router>
-    );
-  }
+                            <UserBookList books={this.state.books} />
+                                {this.state.newBookSuccess && <Redirect to='/books'/>}
+                        </div>
+                    )}/>
+                    <Route exact path='/dashboard' render={props => (
+                        <div>
+                            <Dashboard />
+                        </div>
+                    )}/>
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
