@@ -3,9 +3,10 @@ import SearchToAdd from './components/googleComponents/search'
 import UserBookList from './components/user-book-list'
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 import './App.css';
+import DataBaseSearch from './components/database-search'
 
 class App extends Component {
-	constructor(props) {
+constructor(props) {
 	    super(props)
 	    this.state = {
 		    apiUrl: 'http://localhost:3000',
@@ -36,7 +37,7 @@ class App extends Component {
 			        <SearchToAdd />
 
 					<UserBookList books={this.state.books} />
-
+					<DataBaseSearch />
 		        </div>
 	      	</Router>
 	    );
