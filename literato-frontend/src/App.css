@@ -1,26 +1,50 @@
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+<<<<<<< HEAD
+=======
+.App {
+    display: flex;
 }
 
+body {
+    height: 100vh;
+}
+
+>>>>>>> dashboard_styling
+.App-logo {
+    display: block;
+    margin: 0 auto;
+}
+
+<<<<<<< HEAD
 .App-header {
   background-color: #222;
   height: 60px;
   padding: 20px;
   color: white;
+=======
+.header {
+    background-color: #0084b4;
+    height: 100px;
+    flex: 1 100%;
+    padding: 20px;
+    color: white;
+>>>>>>> dashboard_styling
 }
 
-.App-title {
-  font-size: 1.5em;
+.sidebar {
+    background: #E6ECF0;
+    flex: 1;
+    flex-direction: column;
+    max-width: 15%;
+    min-height: 100vh;
+    color: #0084b4;
 }
 
-.App-intro {
-  font-size: large;
+.main {
+    flex: 2;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.sidebar ul {
+    list-style-type: none;
 }
 
 
@@ -30,5 +54,5 @@
 
 
 .book {
-	margin: 50px 0;
+    margin: 50px 0;
 }
