@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import ToggleDisplay from 'react-toggle-display';
 import BookTitle from './bookTitle'
 import BookDetails from './bookDetails';
+import { Redirect } from 'react-router-dom'
+import './searchResult.css'
 
 class SearchResult extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
 			apiUrl: 'http://localhost:3000',
-			showDetails: false
+			showDetails: false,
+			newBookSuccess: false
 		};
 	}
 
@@ -37,7 +40,6 @@ class SearchResult extends Component {
 			}
 		)
 		.then((rawResponse) => {
-			console.log(rawResponse)
 			return rawResponse.json()
 		})
 		.then((parsedResponse) => {
@@ -57,9 +59,15 @@ class SearchResult extends Component {
 	}
 
 	handleSubmit(event){
+		let author;
+		if(this.props.volumeInfo.authors == undefined){
+			author = "No Authors Found"
+		}else{
+			author = this.props.volumeInfo.authors[0]
+		}
 		var newBook = {
 			title: this.props.volumeInfo.title,
-			authors: this.props.volumeInfo.authors[0],
+			authors: author,
 			description: this.props.volumeInfo.description,
 			image: this.props.volumeInfo.imageLinks.thumbnail
 		}
@@ -74,8 +82,9 @@ class SearchResult extends Component {
 				<ToggleDisplay show={this.state.showDetails}>
 					<BookDetails {...this.props.volumeInfo} />
 						<button onClick={this.handleSubmit.bind(this)}>
-							Submit
+							Add To My Collection
 						</button>
+						{this.state.newBookSuccess && <Redirect to='/books'/>}
 				</ToggleDisplay>
 			</div>
 		)
