@@ -76,7 +76,7 @@ class SearchResult extends Component {
                     <ToggleDisplay show={this.state.showDetails}>
                     <BookDetails {...this.props.volumeInfo} />
                         <button onClick={this.handleSubmit.bind(this)}>
-                            Submit
+                            Submit Fool!
                         </button>
                     </ToggleDisplay>
                 </div>

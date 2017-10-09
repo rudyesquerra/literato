@@ -36,8 +36,7 @@ class App extends Component {
                         <div className="App">
                             <Header />
 
-                            <UserBookList books={this.state.books} />
-                                {this.state.newBookSuccess && <Redirect to='/books'/>}
+
                         </div>
                     )}/>
                     <Route exact path='/dashboard' render={props => (
