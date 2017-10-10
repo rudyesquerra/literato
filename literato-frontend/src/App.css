@@ -22,15 +22,19 @@ body {
 
 .sidebar {
     background: #E6ECF0;
+    color: #0084b4;
     flex: 1;
     flex-direction: column;
-    max-width: 15%;
+    width: 12%;
     min-height: 100vh;
-    color: #0084b4;
+    position: absolute;
+
 }
 
 .main {
-    flex: 2;
+    margin: 0 auto;
+    width: 63%;
+
 }
 
 .sidebar ul {
