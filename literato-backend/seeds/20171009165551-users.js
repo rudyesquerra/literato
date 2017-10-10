@@ -8,8 +8,9 @@ module.exports = {
             name: 'Bianca Portal',
             email: 'bianca@aol.com',
             username: 'bportal',
-            password: 'bailey&123',
+            encryptedPassword: 'bailey&123',
             age: 38,
+            salt:"",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -17,8 +18,9 @@ module.exports = {
             name: 'Kathy Oh',
             email: 'youvebeenKOd@yahoo.com',
             username: 'girl-baller',
-            password: 'snacksaregood',
+            encryptedPassword: 'snacksaregood',
             age: 29,
+            salt:"",
             createdAt: new Date(),
             updatedAt: new Date()
           }
