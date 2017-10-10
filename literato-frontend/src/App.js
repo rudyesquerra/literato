@@ -117,14 +117,20 @@ class App extends Component {
 
 
     render() {
+        if(this.state.user){
+            var userName = this.state.user.name
+        } else {
+            var userName = ""
+        }
         return (
             <Router>
                 <div>
                     <Route exact path='/' render={props => (
                         <div className="App">
                             <Header />
-
-
+                            {userName}
+                            <UserBookList books={this.state.books} />
+                                {this.state.newBookSuccess && <Redirect to='/books'/>}
                         </div>
                     )}/>
                     <Route exact path='/dashboard' render={props => (

@@ -62,6 +62,7 @@ app.post('/user', (req, res) => {
             }
         })
 })
+
 //for adding a user aka signup
 app.post('/signup', (req, res) => {
   //checking that form is properly filled out
@@ -103,7 +104,7 @@ app.post('/login', (req, res) => {
     req.getValidationResult()
         .then((validationErrors) => {
             if(validationErrors.isEmpty()){
-                User.find({email: req.body.email}).then((user) => {
+                User.find({ where: {email: req.body.email} }).then((user) => {
                     if(user.verifyPassword(req.body.password)) {
                         res.status(201)
                         res.json({user: user})
