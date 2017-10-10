@@ -10,11 +10,14 @@ import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
 
 import { handleCheckLogin } from './actions/UserActions'
+import { deleteBook, loadBooks } from './actions/BookActions'
 
 const mapComponentToProps = (store) =>{
     return {
         user: store.user.currentUser,
-        userError: store.user.error
+        userError: store.user.error,
+        books: store.books.books,
+        delete: store.books.deleteBookSuccess
     }
 }
 
@@ -24,12 +27,12 @@ export default connect(mapComponentToProps)(
             super(props)
             this.state = {
                 apiUrl: 'http://localhost:3000',
-                books: [],
                 newBookSuccess: false,
                 errors: null,
                 user: null,
                 newUserSuccess: false,
-                loginUserSuccess: false
+                loginUserSuccess: false,
+
             }
         }
 
@@ -87,13 +90,8 @@ export default connect(mapComponentToProps)(
 
 
       componentWillMount() {
-          fetch(`${this.state.apiUrl}/books`)
-          .then((rawResponse) => {
-              return rawResponse.json()
-          })
-          .then((parsedResponse) => {
-              this.setState({books: parsedResponse.books})
-          })
+          this.props.dispatch(handleCheckLogin(this.state.apiUrl))
+          this.props.dispatch(loadBooks(this.state.apiUrl))
       }
 
 
@@ -111,7 +109,7 @@ export default connect(mapComponentToProps)(
                                 <Header />
                                 {userName}
                                 <UserBookList books={this.state.books} />
-                                    {this.state.newBookSuccess && <Redirect to='/books'/>}
+                                    {this.state.delete && <Redirect to='/'/>}
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (
