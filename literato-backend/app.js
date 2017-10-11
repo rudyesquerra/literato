@@ -34,9 +34,12 @@ app.post('/books', (req, res) => {
                     image: req.body.image
                 })
                 .then((book) => {
-                    res.status(201)
-                    res.json({book: book})
+                    Book.findAll().then((books) => {
+                        res.status(201)
+                        res.json({books: books, newBook: book})
+                    })
                 })
+
             }else {
                 res.status(400)
                 res.json({errors: {validations: validationErrors.array()}})

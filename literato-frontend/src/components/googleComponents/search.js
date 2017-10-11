@@ -13,7 +13,7 @@ class SearchToAdd extends Component {
         super(props);
         this.state = {
             books: [],
-            searchText: ""
+            searchText: "",
         };
     }
 

@@ -37,3 +37,34 @@ export function loadBooks(url) {
 
     })
 }
+
+export function handleNewBook(params){
+    return ((dispatch) => {
+        fetch('http://localhost:3000/books',
+            {
+                body: JSON.stringify(params),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST'
+            }
+        )
+        .then((rawResponse) => {
+            return rawResponse.json()
+        })
+        .then((parsedResponse) => {
+            if(parsedResponse.errors) {
+                dispatch({
+                    type: 'ADD_BOOK_ERROR',
+                    payload: parsedResponse.errors
+                })
+            }else{
+                dispatch({
+                    type: 'ADD_BOOK',
+                    payload: parsedResponse.books
+                })
+            }
+        })
+    })
+
+}

@@ -108,8 +108,7 @@ export default connect(mapComponentToProps)(
                             <div className="App">
                                 <Header />
                                 {userName}
-                                <UserBookList books={this.state.books} />
-                                    {this.state.delete && <Redirect to='/'/>}
+
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (

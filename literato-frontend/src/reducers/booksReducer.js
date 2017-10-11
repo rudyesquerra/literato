@@ -1,6 +1,8 @@
 const initialState = {
     deleteBookSuccess: false,
-    books: []
+    books: [],
+    errors: null,
+    newBookSuccess: false
 }
 
 export default (currentState=initialState, action) =>{
@@ -27,6 +29,28 @@ export default (currentState=initialState, action) =>{
                 }
             )
             break;
+        }
+        case("ADD_BOOK_ERROR"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {
+                errors: 'Book not added'
+                }
+            )
+            break
+        }
+        case("ADD_BOOK"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {
+                    books: action.payload,
+                    newBookSuccess: true,
+                    errors: null
+                }
+            )
+            break
         }
         default:
             newState = currentState

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
 import { deleteBook } from '../actions/BookActions'
+import { handleNewBook } from '../actions/BookActions'
 
 const mapComponentToProps = (store) =>{
     return {
@@ -26,13 +27,13 @@ export default connect(mapComponentToProps)(
           this.props.dispatch(deleteBook(bookId))
         }
 
+
         render() {
-            console.log(this.props.books)
             return(
                 <div>
                     <h1>My Books</h1>
                         <ol>
-                            {this.props.books.map((book, index) => {
+                            {this.props.books && this.props.books.map((book, index) => {
                                 return(
                                     <li key={index}>
                                         <div>
