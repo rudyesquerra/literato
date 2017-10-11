@@ -126,14 +126,17 @@ app.post('/login', (req, res) => {
         })
 })
 
-app.post('/books/destroy', (req, response) => {
+app.post('/books/destroy', (req, res) => {
     req.checkBody('id', 'Is required').notEmpty()
     Book.findById(req.body.id).then(function(book){
-        response.status(200)
-        response.json({book: book})
-        book.destroy()
+        book.destroy().then(function(book){
+            Book.findAll().then((books) => {
+                res.status(200)
+                res.json({books: books})
+            })
+        })
     }).catch((error) => {
-        response.send("Error, couldn't fetch Book")
+        res.json({errors: "Error, couldn't fetch Book"})
     })
 })
 
