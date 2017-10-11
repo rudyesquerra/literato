@@ -10,13 +10,13 @@ import {
 
 class DataBaseSearch extends Component {
 	constructor(props){
-      	super(props);
-      	this.state = {
+      		super(props);
+      		this.state = {
 			apiUrl: 'http://localhost:3000',
-	        searchText: "",
-            dbBooks: []
-      	};
-    }
+	        	searchText: "",
+           		dbBooks: []
+      		};
+    	}
 
     handleKeyPress(event){
         let self = this;
@@ -29,41 +29,44 @@ class DataBaseSearch extends Component {
 
     search() {
     	let self = this
-
-
 		if(self.state.searchText !== ""){
-        	fetch('http://localhost:3000/dbsearch/' + self.state.searchText,  {
-    	        method: "GET",
-    	        dataType: 'json'
-            })
-            .then((rawResponse) =>{
-                console.log(rawResponse)
-          return rawResponse.json()
-
-        })
-        .then((jsonresp)=>{
-            console.log(jsonresp)
-            this.setState(
-                {
-                    title: jsonresp[0].title,
-                    authors: jsonresp[0].authors
-                }
-            )
-        })
-    }
+			fetch('http://localhost:3000/dbsearch/' + self.state.searchText,  {
+			method: "GET",
+			dataType: 'json'
+			})
+			.then((rawResponse) =>{
+				return rawResponse.json()
+			})
+			.then((jsonresp)=>{
+				this.setState(
+				{
+					dbBooks : jsonresp,
+				})
+			})
+    		}
     }
 
     render(){
     	return(
-			<Row>
-                <Col md={12}>
-                	<FormControl type="text" id='searchText' placeholder="Search" onChange={this.handleKeyPress.bind(this)}/>
-	                <Button id="search" bsStyle="primary" onClick={this.search.bind(this)}> Search</Button>
-                    <p>{this.state.title}</p>
-                    <p>{this.state.authors}</p>
-                </Col>
-            </Row>
-		)
+		<Row>
+                	<Col md={12}>
+                		<FormControl type="text" id='searchText' placeholder="Search" onChange={this.handleKeyPress.bind(this)}/>
+	                	<Button id="search" bsStyle="primary" onClick={this.search.bind(this)}> Search</Button>
+					<ol>
+					{this.state.dbBooks.map((books, index) => {
+					    return(
+						<li key={index}>
+						    <div>
+							<h4 className="book-title">{books.title}</h4>
+							<h5 className="book-authors">{books.authors}</h5>
+						    </div>
+						</li>
+					    )
+					})}
+				    </ol>
+                	</Col>
+            	</Row>
+	)
     }
 }
 
