@@ -59,9 +59,15 @@ class SearchResult extends Component {
         }
 
         handleSubmit(event){
+            let author;
+            if(this.props.volumeInfo.authors == undefined){
+                author = "No Authors Found"
+            }else{
+                author = this.props.volumeInfo.authors[0]
+            }
             var newBook = {
                 title: this.props.volumeInfo.title,
-                authors: this.props.volumeInfo.authors[0],
+                authors: author,
                 description: this.props.volumeInfo.description,
                 image: this.props.volumeInfo.imageLinks.thumbnail
             }
