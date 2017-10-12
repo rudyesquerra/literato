@@ -1,6 +1,7 @@
 const initialState = {
     deleteBookSuccess: false,
     books: [],
+    userBooks: [],
     errors: null,
     newBookSuccess: false
 }
@@ -14,7 +15,7 @@ export default (currentState=initialState, action) =>{
                 currentState,
                 {
                     deleteBookSuccess: true,
-                    books: action.payload
+                    userBooks: action.payload
                 }
             )
             break;
@@ -25,9 +26,10 @@ export default (currentState=initialState, action) =>{
                 currentState,
                 {
                     deleteBookSuccess: false,
-                    books: action.payload
+                    userBooks: action.payload
                 }
             )
+            console.log("hello" + action.payload)
             break;
         }
         case("ADD_BOOK_ERROR"):{

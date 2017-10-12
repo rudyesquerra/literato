@@ -9,7 +9,7 @@ import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
 import { handleCheckLogin, handleUserLogin, handleNewUser } from './actions/UserActions'
-import { deleteBook, loadBooks } from './actions/BookActions'
+
 
 const mapComponentToProps = (store) =>{
     return {
@@ -18,7 +18,8 @@ const mapComponentToProps = (store) =>{
         logInUserSuccess: store.user.logInUserSuccess,
         newUserSuccess: store.user.newUserSuccess,
         books: store.books.books,
-        delete: store.books.deleteBookSuccess
+        delete: store.books.deleteBookSuccess,
+        userBooks: store.books.userBooks
     }
 }
 
@@ -34,7 +35,6 @@ export default connect(mapComponentToProps)(
 
       componentWillMount() {
           this.props.dispatch(handleCheckLogin(this.state.apiUrl))
-          this.props.dispatch(loadBooks(this.state.apiUrl))
       }
 
       handleUserLogin(params){
@@ -49,6 +49,7 @@ export default connect(mapComponentToProps)(
             return (
                 <Router>
                     <div>
+
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />

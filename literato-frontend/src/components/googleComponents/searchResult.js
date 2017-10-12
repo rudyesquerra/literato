@@ -12,6 +12,7 @@ import { handleNewBook } from '../../actions/BookActions'
 const mapComponentToProps = (store) =>{
     return {
         books: store.books.books,
+        user: store.user.currentUser
     }
 }
 
@@ -54,7 +55,8 @@ export default connect(mapComponentToProps)(
                 title: this.props.volumeInfo.title,
                 authors: author,
                 description: this.props.volumeInfo.description,
-                image: this.props.volumeInfo.imageLinks.thumbnail
+                image: this.props.volumeInfo.imageLinks.thumbnail,
+                userId: this.props.user.id
             }
             event.preventDefault()
             this.handleNewBook(newBook)
