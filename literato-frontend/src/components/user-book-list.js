@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap';
 import {connect} from 'react-redux'
 
 import { deleteBook } from '../actions/BookActions'
@@ -30,20 +31,19 @@ export default connect(mapComponentToProps)(
 
         render() {
             return(
-                <div>
+                <div className="main">
                     <h1>My Books</h1>
                         <ol>
                             {this.props.books && this.props.books.map((book, index) => {
                                 return(
-                                    <li key={index}>
+                                    <li key={index} className="flex-item">
                                         <div>
+                                            <img src={book.image}/>
                                             <h4 className="book-title">{book.title}</h4>
                                             <h5 className="book-authors">{book.authors}</h5>
-                                            <h5 className="book-description">{book.description}</h5>
-                                            <h5>{book.id}</h5>
-                                            <button onClick={this.handleDeleteBook.bind(this, book.id)}>
+                                            <Button onClick={this.handleDeleteBook.bind(this, book.id)} clasName="delete-book btn btn-default">
                                             Delete Book
-                                            </button>
+                                            </Button>
                                         </div>
                                     </li>
                                 )

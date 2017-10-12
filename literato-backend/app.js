@@ -22,6 +22,22 @@ app.get('/books', (req, res) => {
     })
 })
 
+app.get('/dbsearch/:title', (req, res) => {
+    function myFunction(path){
+        var uri_dec = decodeURIComponent(path)
+        return uri_dec
+    }
+    var title = myFunction(req.params["title"])
+    
+  Book.findAll({
+        where: {
+            title:title,
+        }
+    }).then( (books) =>{
+        res.json(books)
+    })
+})
+
 app.post('/books', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
     req.getValidationResult()

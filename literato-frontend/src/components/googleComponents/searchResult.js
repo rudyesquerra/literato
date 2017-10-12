@@ -26,8 +26,10 @@ export default connect(mapComponentToProps)(
             };
         }
 
+
         toggleDetails() {
             this.setState({showDetails: !this.state.showDetails});
+
         }
 
 

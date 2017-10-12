@@ -1,5 +1,6 @@
 .App {
     display: flex;
+    flex-wrap: wrap;
 }
 
 body {
@@ -34,8 +35,42 @@ body {
 .main {
     margin: 0 auto;
     width: 63%;
+}
+
+.my-books-list {
+    display: flex;
+    flex-flow: row wrap;
+    order: 3;
 
 }
+
+.my-books-list li {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    display: flex;
+    height: 350px;
+    margin: 7px;
+    padding: 10px;
+    position: relative;
+    width: 200px;
+
+}
+
+.flex-item .book-authors {
+    color: #616161;
+}
+
+/*.flex-item .book-description {
+    max-width: 90%;
+    min-width: 75%;
+}*/
+
+.flex-item .btn-default {
+    bottom: 10px;
+    position: absolute;
+    width: 90%;
+}
+
 
 .sidebar ul {
     list-style-type: none;
