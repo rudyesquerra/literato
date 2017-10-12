@@ -1,26 +1,79 @@
+.App {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    height: 100vh;
+}
+
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    display: block;
+    margin: 0 auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 60px;
-  padding: 20px;
-  color: white;
+.header {
+    background-color: #0084b4;
+    height: 100px;
+    flex: 1 100%;
+    padding: 20px;
+    color: white;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+.sidebar {
+    background: #E6ECF0;
+    color: #0084b4;
+    flex: 1;
+    flex-direction: column;
+    width: 12%;
+    min-height: 100vh;
+    position: absolute;
+
 }
 
-.App-intro {
-  font-size: large;
+.main {
+    margin: 0 auto;
+    width: 63%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.my-books-list {
+    display: flex;
+    flex-flow: row wrap;
+    order: 3;
+
+}
+
+.my-books-list li {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    display: flex;
+    height: 350px;
+    margin: 7px;
+    padding: 10px;
+    position: relative;
+    width: 200px;
+
+}
+
+.flex-item .book-authors {
+    color: #616161;
+}
+
+/*.flex-item .book-description {
+    max-width: 90%;
+    min-width: 75%;
+}*/
+
+.flex-item .btn-default {
+    bottom: 10px;
+    position: absolute;
+    width: 90%;
+}
+
+
+.sidebar ul {
+    list-style-type: none;
 }
 
 
@@ -30,5 +83,5 @@
 
 
 .book {
-	margin: 50px 0;
+    margin: 50px 0;
 }
