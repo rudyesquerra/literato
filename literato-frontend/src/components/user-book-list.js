@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import {connect} from 'react-redux'
 
 import { deleteBook } from '../actions/BookActions'
+import { handleNewBook } from '../actions/BookActions'
 
 const mapComponentToProps = (store) =>{
     return {
@@ -27,13 +28,13 @@ export default connect(mapComponentToProps)(
           this.props.dispatch(deleteBook(bookId))
         }
 
+
         render() {
-            console.log(this.props.books)
             return(
                 <div className="main">
                     <h1>My Books</h1>
-                        <ol className="my-books-list">
-                            {this.props.books.map((book, index) => {
+                        <ol>
+                            {this.props.books && this.props.books.map((book, index) => {
                                 return(
                                     <li key={index} className="flex-item">
                                         <div>

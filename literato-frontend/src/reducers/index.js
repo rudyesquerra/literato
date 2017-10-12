@@ -1,6 +1,6 @@
 import userReducer from './userReducer.js'
-import booksReducer from './booksReducer'
-  import {combineReducers} from 'redux'
+import {combineReducers} from 'redux'
+import booksReducer from './booksReducer.js'
 
   export default combineReducers({
     user: userReducer,
