@@ -36,6 +36,7 @@ class SearchToAdd extends Component {
         .then((r) => r.json())
         .then(books => self.setState({books: books.items})
         )}
+
     }
 
     render(){
@@ -43,7 +44,7 @@ class SearchToAdd extends Component {
             <div className="main">
                 <Row>
                     <Col md={10}>
-                        <FormControl type="text" id='searchText' placeholder="Search" onKeyPress={this.handleKeyPress.bind(this)} />
+                        <FormControl type="text" id='searchText' placeholder="Search" onChange={this.handleKeyPress.bind(this)} />
                             <Button id="search" bsStyle="primary" onClick={this.search.bind(this)}>Search
                             </Button>
                             <SearchResultsList books={this.state.books} />

@@ -16,7 +16,6 @@ const mapComponentToProps = (store) =>{
 }
 
 export default connect(mapComponentToProps)(
-
     class SearchResult extends Component {
         constructor(props){
             super(props);
@@ -26,12 +25,9 @@ export default connect(mapComponentToProps)(
             };
         }
 
-
         toggleDetails() {
             this.setState({showDetails: !this.state.showDetails});
-
         }
-
 
         componentWillMount() {
             fetch(`${this.state.apiUrl}/books`)
@@ -47,22 +43,22 @@ export default connect(mapComponentToProps)(
             this.props.dispatch(handleNewBook(params))
         }
 
-            handleSubmit(event){
-                let author;
- 		        if(this.props.volumeInfo.authors == undefined){
- 			        author = "No Authors Found"
- 		        }else{
-			        author = this.props.volumeInfo.authors[0]
- 		        }
-                var newBook = {
-                    title: this.props.volumeInfo.title,
-                    authors: author,
-                    description: this.props.volumeInfo.description,
-                    image: this.props.volumeInfo.imageLinks.thumbnail
-                }
-                event.preventDefault()
-                this.handleNewBook(newBook)
+        handleSubmit(event){
+            let author;
+		        if(this.props.volumeInfo.authors == undefined){
+			        author = "No Authors Found"
+		        }else{
+		        author = this.props.volumeInfo.authors[0]
+		        }
+            var newBook = {
+                title: this.props.volumeInfo.title,
+                authors: author,
+                description: this.props.volumeInfo.description,
+                image: this.props.volumeInfo.imageLinks.thumbnail
             }
+            event.preventDefault()
+            this.handleNewBook(newBook)
+        }
 
             render(){
                 return(

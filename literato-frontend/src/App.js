@@ -4,7 +4,23 @@ import UserBookList from './components/user-book-list'
 import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './App.css';
+import Login from './components/login'
+import Signup from './components/signup'
+import Header from './components/dashboard/header'
+import Dashboard from './components/dashboard/dashboard'
+import { handleCheckLogin, handleUserLogin, handleNewUser } from './actions/UserActions'
+import { deleteBook, loadBooks } from './actions/BookActions'
 
+const mapComponentToProps = (store) =>{
+    return {
+        user: store.user.currentUser,
+        userError: store.user.error,
+        logInUserSuccess: store.user.logInUserSuccess,
+        newUserSuccess: store.user.newUserSuccess,
+        books: store.books.books,
+        delete: store.books.deleteBookSuccess
+    }
+}
 
 export default connect(mapComponentToProps)(
     class App extends Component {
@@ -21,6 +37,13 @@ export default connect(mapComponentToProps)(
           this.props.dispatch(loadBooks(this.state.apiUrl))
       }
 
+      handleUserLogin(params){
+          this.props.dispatch(handleUserLogin(this.state.apiUrl, params))
+      }
+
+      handleNewUser(params){
+          this.props.dispatch(handleNewUser(this.state.apiUrl, params))
+      }
 
         render() {
             return (
@@ -29,8 +52,6 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
-                                {userName}
-
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (

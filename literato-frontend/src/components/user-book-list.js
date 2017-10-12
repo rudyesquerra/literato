@@ -33,7 +33,7 @@ export default connect(mapComponentToProps)(
             return(
                 <div className="main">
                     <h1>My Books</h1>
-                        <ol>
+                        <ol className="my-books-list">
                             {this.props.books && this.props.books.map((book, index) => {
                                 return(
                                     <li key={index} className="flex-item">
