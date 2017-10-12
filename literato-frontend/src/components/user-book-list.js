@@ -41,7 +41,7 @@ export default connect(mapComponentToProps)(
                                             <img src={book.image}/>
                                             <h4 className="book-title">{book.title}</h4>
                                             <h5 className="book-authors">{book.authors}</h5>
-                                            <Button onClick={this.handleDeleteBook.bind(this, book.id)} clasName="delete-book btn btn-default">
+                                            <Button onClick={this.handleDeleteBook.bind(this, book.id)} className="delete-book btn btn-default">
                                             Delete Book
                                             </Button>
                                         </div>

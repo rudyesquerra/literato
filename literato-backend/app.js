@@ -28,7 +28,7 @@ app.get('/dbsearch/:title', (req, res) => {
         return uri_dec
     }
     var title = myFunction(req.params["title"])
-    
+
   Book.findAll({
         where: {
             title:title,
@@ -64,13 +64,19 @@ app.post('/books', (req, res) => {
 })
 
 app.post('/user', (req, res) => {
-    req.checkBody('email', 'Is required').notEmpty()
+    req.checkBody('authToken', 'Is required').notEmpty()
+
     req.getValidationResult()
         .then((validationErrors) => {
             if(validationErrors.isEmpty()){
-                User.find({where: {email: req.body.email}}).then((user) => {
-                    res.status(201)
-                    res.json({user: user})
+                User.find({ where: {authToken: req.body.authToken}}).then((user) => {
+                    if(user.authExpired()){
+                        res.status(400)
+                        res.json({errors: {message: "Please log in again"}})
+                    } else {
+                        res.status(201)
+                        res.json({user: user})
+                    }
                 }).catch((error) => {
                     res.status(400)
                     res.json({errors: {message: 'User not found'}})
@@ -125,16 +131,17 @@ app.post('/login', (req, res) => {
             if(validationErrors.isEmpty()){
                 User.find({ where: {email: req.body.email} }).then((user) => {
                     if(user.verifyPassword(req.body.password)) {
-                        res.status(201)
-                        res.json({user: user})
+                        user.setAuthToken()
+                        user.save().then((user) => {
+                            res.status(201)
+                            res.json({user: user})
+                        })
                     }else{
                         res.status(400)
-                        console.log('bad pass')
                         res.json({errors: {message: "User Not Found"}})
                     }
                 }).catch((error)=> {
                     res.status(400)
-                    console.log('user not found for real')
                     res.json({errors: {message: "User Not Found"}})
                 })
             } else {
