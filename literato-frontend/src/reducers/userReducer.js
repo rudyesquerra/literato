@@ -48,6 +48,14 @@ export default (currentState=initialState, action) =>{
             )
             break;
         }
+        case("REMOVE_USER"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {currentUser: null, error: null, logInUserSuccess: false}
+            )
+            break;
+        }
         default:
         newState = currentState
     }

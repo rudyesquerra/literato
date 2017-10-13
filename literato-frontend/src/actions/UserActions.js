@@ -92,3 +92,12 @@ export function handleNewUser(apiUrl, params){
         })
     })
 }
+
+export function handleUserLogout() {
+    return ((dispatch) => {
+        localStorage.removeItem('authToken');
+        dispatch({
+            type: "REMOVE_USER"
+        })
+    })
+}

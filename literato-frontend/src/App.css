@@ -60,6 +60,19 @@ body {
     color: #616161;
 }
 
+.sign-out-link {
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.sign-out-link:hover {
+    color: aqua;
+    text-decoration: none;
+}
+
 /*.flex-item .book-description {
     max-width: 90%;
     min-width: 75%;
