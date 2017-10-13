@@ -28,8 +28,28 @@ export function handleCheckLogin(apiUrl){
                         payload: parsedResponse.user
                     })
                 }
+                return parsedResponse
+            })
+            .then((parsedResponse) => {
+                dispatch (loadBooks(apiUrl, parsedResponse.user.id))
             })
         }
+    })
+}
+
+function loadBooks(url, id) {
+    return ((dispatch) => {
+        fetch(`${url}/books/${id}`)
+        .then((rawResponse) => {
+            return rawResponse.json()
+        })
+        .then((parsedResponse) => {
+            console.log(parsedResponse.books);
+            dispatch({
+                type: 'LOAD_BOOKS',
+                payload: parsedResponse.books
+            })
+        })
     })
 }
 

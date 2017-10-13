@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import SearchToAdd from './components/googleComponents/search'
-import UserBookList from './components/user-book-list'
 import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './App.css';
@@ -18,7 +16,8 @@ const mapComponentToProps = (store) =>{
         logInUserSuccess: store.user.logInUserSuccess,
         newUserSuccess: store.user.newUserSuccess,
         books: store.books.books,
-        delete: store.books.deleteBookSuccess
+        delete: store.books.deleteBookSuccess,
+        userBooks: store.books.userBooks
     }
 }
 
@@ -34,7 +33,6 @@ export default connect(mapComponentToProps)(
 
       componentWillMount() {
           this.props.dispatch(handleCheckLogin(this.state.apiUrl))
-          this.props.dispatch(loadBooks(this.state.apiUrl))
       }
 
       handleUserLogin(params){
@@ -53,6 +51,7 @@ export default connect(mapComponentToProps)(
             return (
                 <Router>
                     <div>
+
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />

@@ -22,6 +22,17 @@ app.get('/books', (req, res) => {
     })
 })
 
+app.get('/books/:userId', (req, res) => {
+    Book.findAll({
+        where: {
+            userId: req.params["userId"]
+        }
+    }).then((books)=>{
+        res.status(200)
+        res.json({books: books})
+    })
+})
+
 app.get('/dbsearch/:title', (req, res) => {
     function myFunction(path){
         var uri_dec = decodeURIComponent(path)
@@ -47,7 +58,8 @@ app.post('/books', (req, res) => {
                     title: req.body.title,
                     authors: req.body.authors,
                     description: req.body.description,
-                    image: req.body.image
+                    image: req.body.image,
+                    userId: req.body.userId
                 })
                 .then((book) => {
                     Book.findAll().then((books) => {

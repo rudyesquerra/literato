@@ -4,5 +4,5 @@ import booksReducer from './booksReducer.js'
 
   export default combineReducers({
     user: userReducer,
-    books: booksReducer
+    books: booksReducer,
   })

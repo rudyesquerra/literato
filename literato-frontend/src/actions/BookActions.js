@@ -22,21 +22,7 @@ export function deleteBook(id) {
     })
 }
 
-export function loadBooks(url) {
-    return ((dispatch) => {
-        fetch(`${url}/books`)
-        .then((rawResponse) => {
-            return rawResponse.json()
-        })
-        .then((parsedResponse) => {
-            dispatch({
-                type: 'LOAD_BOOKS',
-                payload: parsedResponse.books
-            })
-        })
 
-    })
-}
 
 export function handleNewBook(params){
     return ((dispatch) => {
@@ -66,5 +52,4 @@ export function handleNewBook(params){
             }
         })
     })
-
 }
