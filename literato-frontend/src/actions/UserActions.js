@@ -2,11 +2,11 @@
 
 export function handleCheckLogin(apiUrl){
     return ((dispatch)=> {
-        var userEmail = localStorage.getItem('userEmail');
-        if(userEmail){
+        var authToken = localStorage.getItem('authToken');
+        if(authToken){
             fetch(`${apiUrl}/user`,
             {
-                body: JSON.stringify({email: userEmail}),
+                body: JSON.stringify({authToken: authToken}),
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -73,7 +73,7 @@ export function handleUserLogin(apiUrl, params){
                     payload: parsedResponse.errors
                 })
             }else{
-                localStorage.setItem('userEmail', parsedResponse.user.email);
+                localStorage.setItem('authToken', parsedResponse.user.authToken);
                     dispatch({
                         type: 'FETCHED_USER_LOGIN',
                         payload: parsedResponse.user
@@ -109,6 +109,15 @@ export function handleNewUser(apiUrl, params){
                         payload: parsedResponse.user
                     })
             }
+        })
+    })
+}
+
+export function handleUserLogout() {
+    return ((dispatch) => {
+        localStorage.removeItem('authToken');
+        dispatch({
+            type: "REMOVE_USER"
         })
     })
 }

@@ -6,8 +6,8 @@ import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
-import { handleCheckLogin, handleUserLogin, handleNewUser } from './actions/UserActions'
-
+import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
+import { deleteBook, loadBooks } from './actions/BookActions'
 
 const mapComponentToProps = (store) =>{
     return {
@@ -43,6 +43,10 @@ export default connect(mapComponentToProps)(
           this.props.dispatch(handleNewUser(this.state.apiUrl, params))
       }
 
+      handleLogout(){
+          this.props.dispatch(handleUserLogout())
+      }
+
         render() {
             return (
                 <Router>
@@ -55,7 +59,8 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard />
+                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.logInUserSuccess && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
