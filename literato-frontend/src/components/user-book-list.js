@@ -5,32 +5,32 @@ import { deleteBook, loadBooks } from '../actions/BookActions'
 import { handleCheckLogin } from '../actions/UserActions'
 
 const mapComponentToProps = (store) =>{
-    console.log(store.user);
+    // console.log(store.user);
+
     return {
         user: store.user.currentUser,
         userError: store.user.error,
         userBooks: store.books.userBooks,
         delete: store.books.deleteBookSuccess,
         books: store.books.books,
-
     }
+
 }
 
 export default connect(mapComponentToProps)(
-    class UserBookList extends React.Component {
+    class UserBookList extends Component {
+
         constructor(props) {
             super(props)
             this.state = {
-                apiUrl: 'http://localhost:3000',
-
+                apiUrl: 'http://localhost:3000'
             }
+            console.log(this.props);
         }
 
 
         componentWillMount(){
-
             this.props.dispatch(handleCheckLogin(this.state.apiUrl))
-            this.props.dispatch(loadBooks(this.state.apiUrl, 3))
         }
 
         handleDeleteBook(bookId) {
@@ -38,14 +38,16 @@ export default connect(mapComponentToProps)(
         }
 
         render() {
+            {console.log(this.props.userBooks[0])}
+            {console.log(this.props.user)}
+
             return(
                 <div className="main">
-                {console.log(this.props.user)}
-                {console.log(this.props.userId)}
 
 
 
                     <h1>My Books</h1>
+                    {this.props.user && this.props.userBooks &&
                         <ol className="my-books-list">
                             {this.props.userBooks && this.props.userBooks.map((userBooks, index) => {
                                 return(
@@ -62,6 +64,7 @@ export default connect(mapComponentToProps)(
                                 )
                             })}
                         </ol>
+                    }
                 </div>
             )
         }
