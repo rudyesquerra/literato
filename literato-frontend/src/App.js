@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchToAdd from './components/googleComponents/search'
 import UserBookList from './components/user-book-list'
 import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
 import './App.css';
 import Login from './components/login'
@@ -56,6 +57,13 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
+                                <div className="forms">
+                                    <Signup onSubmit={this.handleNewUser.bind(this)}/>
+                                    {this.props.newUserSuccess && <Redirect to='/dashboard' />}
+                                    <Login onSubmit={this.handleUserLogin.bind(this)} />
+                                    {this.props.logInUserSuccess &&
+                                    <Redirect to='/dashboard' />}
+                                </div>
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (

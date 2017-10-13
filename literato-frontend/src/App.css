@@ -1,6 +1,7 @@
 .App {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 body {
@@ -88,6 +89,31 @@ body {
 .sidebar ul {
     list-style-type: none;
 }
+
+.forms {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+
+}
+.big-card-one,
+.big-card-two {
+    width: 40%;
+}
+
+
+
+@media all and (max-width: 450px) {
+    .big-card-one { width: 90% }
+    .big-card-two { width: 90% }
+}
+
+
+
 
 
 /*********************************
