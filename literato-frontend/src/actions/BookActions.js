@@ -22,8 +22,6 @@ export function deleteBook(id) {
     })
 }
 
-
-
 export function handleNewBook(params){
     return ((dispatch) => {
         fetch('http://localhost:3000/books',

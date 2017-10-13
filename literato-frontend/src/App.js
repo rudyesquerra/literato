@@ -6,7 +6,9 @@ import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
+import DataBaseSearch from './components/database-search.js'
 import { handleCheckLogin, handleUserLogin, handleNewUser } from './actions/UserActions'
+
 
 
 const mapComponentToProps = (store) =>{
@@ -51,6 +53,7 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
+                                <DataBaseSearch />
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (

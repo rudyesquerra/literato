@@ -44,7 +44,6 @@ function loadBooks(url, id) {
             return rawResponse.json()
         })
         .then((parsedResponse) => {
-            console.log(parsedResponse.books);
             dispatch({
                 type: 'LOAD_BOOKS',
                 payload: parsedResponse.books
