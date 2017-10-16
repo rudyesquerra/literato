@@ -24,6 +24,7 @@ export default (currentState=initialState, action) =>{
             break;
         }
         case("FETCHED_USER_LOGIN"):{
+            console.log(action.payload)
             newState = Object.assign(
                 {},
                 currentState,
@@ -44,6 +45,14 @@ export default (currentState=initialState, action) =>{
                 {},
                 currentState,
                 {currentUser: action.payload, error: null, newUserSuccess: true, logInUserSuccess: false}
+            )
+            break;
+        }
+        case("REMOVE_USER"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {currentUser: null, error: null, logInUserSuccess: false}
             )
             break;
         }

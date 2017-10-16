@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
+import { Row, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
 import './App.css';
 import Login from './components/login'
@@ -7,7 +8,8 @@ import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Dashboard from './components/dashboard/dashboard'
 import DataBaseSearch from './components/database-search.js'
-import { handleCheckLogin, handleUserLogin, handleNewUser } from './actions/UserActions'
+import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
+import { deleteBook, loadBooks } from './actions/BookActions'
 
 
 
@@ -45,6 +47,10 @@ export default connect(mapComponentToProps)(
           this.props.dispatch(handleNewUser(this.state.apiUrl, params))
       }
 
+      handleLogout(){
+          this.props.dispatch(handleUserLogout())
+      }
+
         render() {
             return (
                 <Router>
@@ -53,24 +59,32 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
-                                <DataBaseSearch />
+
+                                <div className="forms">
+                                    <Signup onSubmit={this.handleNewUser.bind(this)}/>
+                                    {this.props.user && <Redirect to='/dashboard' />}
+                                    <Login onSubmit={this.handleUserLogin.bind(this)} />
+                                    {this.props.user &&
+                                    <Redirect to='/dashboard' />}
+                                </div>
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard />
+                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
                             <div>
                                 <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                {this.props.newUserSuccess && <Redirect to='/dashboard' />}
+                                {this.props.user && <Redirect to='/dashboard' />}
                             </div>
                         )}/>
                         <Route exact path='/login' render={props => (
                             <div>
                                 <Login onSubmit={this.handleUserLogin.bind(this)} />
-                                {this.props.logInUserSuccess &&
+                                {this.props.user &&
                                 <Redirect to='/dashboard' />}
                             </div>
                         )}/>

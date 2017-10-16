@@ -9,7 +9,9 @@ module.exports = function(sequelize, DataTypes) {
         username: DataTypes.STRING,
         encryptedPassword: DataTypes.STRING,
         age: DataTypes.INTEGER,
-        salt: DataTypes.STRING
+        salt: DataTypes.STRING,
+        authToken: DataTypes.STRING,
+        authTokenExpiration: DataTypes.DATE
     }, {
         classMethods: {
             associate: function(models) {
@@ -31,13 +33,22 @@ module.exports = function(sequelize, DataTypes) {
         },
        instanceMethods: {
             toJSON(){
-                return{
+                return {
                     id: this.get('id'),
                     name: this.get('name'),
                     email: this.get('email'),
                     username: this.get('username'),
-                    age: this.get('age')
+                    age: this.get('age'),
+                    authToken: this.get('authToken'),
+                    authTokenExpiration: this.get('authTokenExpiration')
                 }
+            },
+            setAuthToken(){
+                const token = uuid()
+                const expiration = new Date()
+                expiration.setMonth(expiration.getMonth() + 1)
+                this.setDataValue('authToken', token)
+                this.setDataValue('authTokenExpiration', expiration)
             },
             encrypt(value){
                 const salt = this.get('salt')
@@ -49,6 +60,14 @@ module.exports = function(sequelize, DataTypes) {
                 const encryptedUnverifiedPassword = this.encrypt(unverifiedPassword)
                 return encryptedUnverifiedPassword === this.get('encryptedPassword')
             },
+            authExpired(){
+                return new Date() > this.get('authTokenExpiration')
+            }
+        },
+        hooks:{
+            beforeCreate: function(user, options){
+                user.setAuthToken()
+            }
         }
     });
     return User;

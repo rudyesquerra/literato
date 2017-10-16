@@ -24,50 +24,35 @@ class Login extends Component{
 
     render() {
         return(
-            <Grid>
-                <PageHeader>
-                    <Row>
-                        <Col xs={8}>
-                        Login Here
-                        </Col>
-                    </Row>
-                </PageHeader>
+            <div className="big-card-two">
+                <h1>
+                    Login Here
+                </h1>
                 <form>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="email">Email </ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    name="email"
-                                    value={this.state.form.email}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="password">Password </ControlLabel>
-                                <FormControl
-                                    type="password"
-                                    name="password"
-                                    value={this.state.form.password}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <Button
-                                onClick={this.handleSubmit.bind(this)}
-                                id='submit'>Login</Button>
-                        </Col>
-                    </Row>
+                    <div className="form-group">
+                        <ControlLabel id="email">Email </ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="email"
+                            value={this.state.form.email}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ControlLabel id="password">Password </ControlLabel>
+                        <FormControl
+                            type="password"
+                            name="password"
+                            value={this.state.form.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <Button
+                        onClick={this.handleSubmit.bind(this)}
+                        id='submit'>Login
+                    </Button>
                 </form>
-            </Grid>
+            </div>
 
         )
     }

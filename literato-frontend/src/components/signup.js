@@ -27,90 +27,63 @@ class Signup extends Component{
 
     render() {
         return(
-            <Grid>
-                <PageHeader>
-                    <Row>
-                        <Col xs={8}>
-                        Signup Here
-                        </Col>
-                    </Row>
-                </PageHeader>
+            <div className="big-card-one">
+                <h1>
+                    Signup Here
+                </h1>
                 <form>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="name">Name </ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    name="name"
-                                    value={this.state.form.name}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="email">Email </ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    name="email"
-                                    value={this.state.form.email}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="username">Username </ControlLabel>
-                                <FormControl
-                                    type="text"
-                                    name="username"
-                                    value={this.state.form.username}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="password">Password </ControlLabel>
-                                <FormControl
-                                    type="password"
-                                    name="password"
-                                    value={this.state.form.password}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <FormGroup>
-                                <ControlLabel id="age">Age </ControlLabel>
-                                <FormControl
-                                    type="number"
-                                    name="age"
-                                    value={this.state.form.age}
-                                    onChange={this.handleChange.bind(this)}
-                                />
-                            </FormGroup>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col xs={6}>
-                            <Button
-                                onClick={this.handleSubmit.bind(this)}
-                                id='submit'>Sign up</Button>
-                        </Col>
-                    </Row>
+                    <div className="form-group">
+                        <ControlLabel id="name">Name</ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="name"
+                            value={this.state.form.name}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ControlLabel id="email">Email </ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="email"
+                            value={this.state.form.email}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ControlLabel id="username">Username </ControlLabel>
+                        <FormControl
+                            type="text"
+                            name="username"
+                            value={this.state.form.username}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ControlLabel id="password">Password </ControlLabel>
+                        <FormControl
+                            type="password"
+                            name="password"
+                            value={this.state.form.password}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <ControlLabel id="age">Age </ControlLabel>
+                        <FormControl
+                            min="1"
+                            type="number"
+                            name="age"
+                            value={this.state.form.age}
+                            onChange={this.handleChange.bind(this)}
+                        />
+                    </div>
+                    <Button
+                        onClick={this.handleSubmit.bind(this)}
+                        id='submit'>Sign up
+                    </Button>
                 </form>
-            </Grid>
-
+            </div>
         )
     }
 }

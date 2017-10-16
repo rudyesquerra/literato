@@ -1,6 +1,7 @@
 .App {
     display: flex;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 body {
@@ -60,6 +61,19 @@ body {
     color: #616161;
 }
 
+.sign-out-link {
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.sign-out-link:hover {
+    color: aqua;
+    text-decoration: none;
+}
+
 /*.flex-item .book-description {
     max-width: 90%;
     min-width: 75%;
@@ -75,6 +89,31 @@ body {
 .sidebar ul {
     list-style-type: none;
 }
+
+.forms {
+    display: flex;
+    flex: 1 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+
+}
+.big-card-one,
+.big-card-two {
+    width: 40%;
+}
+
+
+
+@media all and (max-width: 450px) {
+    .big-card-one { width: 90% }
+    .big-card-two { width: 90% }
+}
+
+
+
 
 
 /*********************************
