@@ -39,11 +39,10 @@ app.get('/dbsearch/:title', (req, res) => {
             return uri_dec
         }
         var title = myFunction(req.params["title"])
-        Book.sequelize.query('SELECT "Books"."userId","Books"."title","Books"."authors","Books"."description" FROM "Books" LEFT OUTER JOIN "Users" ON "Users"."id" = "Books"."userId" WHERE "Books"."title" = :title', {replacements: {title: req.params.title}})
-
+        Book.sequelize.query('SELECT "Books"."userId","Books"."title","Books"."authors","Books"."description","Users"."username" FROM "Books" LEFT OUTER JOIN "Users" ON "Users"."id" = "Books"."userId" WHERE "Books"."title" = :title', {replacements: {title: req.params.title}})
     .then( (books) => {
-        console.log(books);
-        res.json(books)
+        console.log('this is books: ' + JSON.stringify(books));
+        res.json(books[0])
     })
 })
 

@@ -73,6 +73,9 @@ export default connect(mapComponentToProps)(
                             <div>
                                 <Dashboard onSubmit={this.handleLogout.bind(this)} />
                                 {!this.props.user && <Redirect to='/login' />}
+
+                                <DataBaseSearch />
+
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
