@@ -76,7 +76,6 @@ export function handleUserLogin(apiUrl, params){
                 })
             }else{
                 localStorage.setItem('authToken', parsedResponse.user.authToken);
-                debugger
                 dispatch({
                     type: 'FETCHED_USER_LOGIN',
                     payload: parsedResponse.user
