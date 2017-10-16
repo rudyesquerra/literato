@@ -31,7 +31,9 @@ export function handleCheckLogin(apiUrl){
                 return parsedResponse
             })
             .then((parsedResponse) => {
-                dispatch (loadBooks(apiUrl, parsedResponse.user.id))
+                if(parsedResponse.user){
+                    dispatch (loadBooks(apiUrl, parsedResponse.user.id))
+                }
             })
         }
     })
@@ -74,10 +76,11 @@ export function handleUserLogin(apiUrl, params){
                 })
             }else{
                 localStorage.setItem('authToken', parsedResponse.user.authToken);
-                    dispatch({
-                        type: 'FETCHED_USER_LOGIN',
-                        payload: parsedResponse.user
-                    })
+                debugger
+                dispatch({
+                    type: 'FETCHED_USER_LOGIN',
+                    payload: parsedResponse.user
+                })
             }
         })
     })

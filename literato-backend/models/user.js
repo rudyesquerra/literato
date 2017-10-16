@@ -61,8 +61,7 @@ module.exports = function(sequelize, DataTypes) {
                 return encryptedUnverifiedPassword === this.get('encryptedPassword')
             },
             authExpired(){
-                console.log("expiration", this.get('authTokenExpiration') > new Date())
-                return this.get('authTokenExpiration') > new Date()
+                return new Date() > this.get('authTokenExpiration')
             }
         },
         hooks:{

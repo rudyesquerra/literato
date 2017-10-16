@@ -90,6 +90,7 @@ app.post('/user', (req, res) => {
                         res.json({user: user})
                     }
                 }).catch((error) => {
+                    console.log(error)
                     res.status(400)
                     res.json({errors: {message: 'User not found'}})
                 })

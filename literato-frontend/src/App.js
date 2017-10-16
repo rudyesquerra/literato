@@ -58,9 +58,9 @@ export default connect(mapComponentToProps)(
                                 <Header />
                                 <div className="forms">
                                     <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                    {this.props.newUserSuccess && <Redirect to='/dashboard' />}
+                                    {this.props.user && <Redirect to='/dashboard' />}
                                     <Login onSubmit={this.handleUserLogin.bind(this)} />
-                                    {this.props.logInUserSuccess &&
+                                    {this.props.user &&
                                     <Redirect to='/dashboard' />}
                                 </div>
                             </div>
@@ -68,19 +68,19 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/dashboard' render={props => (
                             <div>
                                 <Dashboard onSubmit={this.handleLogout.bind(this)} />
-                                {!this.props.logInUserSuccess && <Redirect to='/login' />}
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
                             <div>
                                 <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                {this.props.newUserSuccess && <Redirect to='/dashboard' />}
+                                {this.props.user && <Redirect to='/dashboard' />}
                             </div>
                         )}/>
                         <Route exact path='/login' render={props => (
                             <div>
                                 <Login onSubmit={this.handleUserLogin.bind(this)} />
-                                {this.props.logInUserSuccess &&
+                                {this.props.user &&
                                 <Redirect to='/dashboard' />}
                             </div>
                         )}/>
