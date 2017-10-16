@@ -3,7 +3,8 @@ const initialState = {
     userBooks: [],
     books: [],
     errors: null,
-    newBookSuccess: false
+    newBookSuccess: false,
+    searchResults: []
 }
 
 export default (currentState=initialState, action) =>{
@@ -49,7 +50,19 @@ export default (currentState=initialState, action) =>{
                 {
                     books: action.payload,
                     newBookSuccess: true,
-                    errors: null
+                    errors: null,
+                    searchResults: []
+                }
+            )
+            break
+        }
+        case("BOOK_SEARCH"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {
+                    searchResults: action.payload,
+                    errors: "AHHHH"
                 }
             )
             break

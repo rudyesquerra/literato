@@ -51,3 +51,25 @@ export function handleNewBook(params){
         })
     })
 }
+
+export function search(searchText) {
+    return ((dispatch) => {
+        console.log('0')
+        if(searchText !== ""){
+            fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchText + 	'&maxResults=40', {
+                method: "GET",
+                dataType: 'json'
+            })
+            .then((r) => {
+                return r.json()
+
+            })
+            .then((books) => {
+                dispatch({
+                    type: 'BOOK_SEARCH',
+                    payload: books.items
+                })
+            })
+        }
+    })
+}
