@@ -17,12 +17,12 @@ class Sidebar extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to ='/dashboard'>
+                        <Link to ='/make-trades'>
                             <p>Make Trades</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to ='/profile'>
+                        <Link to ='/pending'>
                             <p>Pending Trades</p>
                         </Link>
                     </li>

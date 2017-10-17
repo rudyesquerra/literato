@@ -7,6 +7,8 @@ import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Profile from './components/dashboard/profile'
+import Pending from './components/dashboard/pending'
+import MakeTrades from './components/dashboard/make-trades'
 import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
 import { deleteBook, loadBooks } from './actions/BookActions'
 import Dashboard from './components/dashboard/dashboard'
@@ -74,6 +76,16 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/dashboard' render={props => (
                             <div>
                                 <Dashboard />
+                            </div>
+                        )}/>
+                        <Route exact path='/make-trades' render={props => (
+                            <div>
+                                <MakeTrades />
+                            </div>
+                        )}/>
+                        <Route exact path='/pending' render={props => (
+                            <div>
+                                <Pending />
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
