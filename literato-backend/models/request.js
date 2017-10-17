@@ -10,19 +10,23 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
             Request.belongsTo(models.User,{
                 foreignKey: 'user1Id',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                as: 'user1'
             }),
             Request.belongsTo(models.User,{
                 foreignKey: 'user2Id',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                as: 'user2'
             }),
             Request.belongsTo(models.Book,{
                 foreignKey: 'book1Id',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                as: 'book1'
             }),
             Request.belongsTo(models.Book,{
                 foreignKey: 'book2Id',
-                onDelete: 'CASCADE'
+                onDelete: 'CASCADE',
+                as: 'book2'
             })
       }
     }

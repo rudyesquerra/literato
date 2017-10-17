@@ -35,18 +35,15 @@ app.get('/books/:userId', (req, res) => {
 })
 
 app.get('/dbsearch/:title', (req, res) => {
-    function myFunction(path){
-        var uri_dec = decodeURIComponent(path)
-        return uri_dec
-    }
-    var title = myFunction(req.params["title"])
-
-  Book.findAll({
-        where: {
-            title:title,
+        function myFunction(path){
+            var uri_dec = decodeURIComponent(path)
+            return uri_dec
         }
-    }).then( (books) =>{
-        res.json(books)
+        var title = myFunction(req.params["title"])
+        Book.sequelize.query('SELECT "Books"."userId","Books"."title","Books"."authors","Books"."description", "Books"."id", "Users"."username" FROM "Books" LEFT OUTER JOIN "Users" ON "Users"."id" = "Books"."userId" WHERE "Books"."title" = :title', {replacements: {title: req.params.title}})
+    .then( (books) => {
+        console.log('this is books: ' + JSON.stringify(books));
+        res.json(books[0])
     })
 })
 
@@ -198,8 +195,9 @@ app.get('/requests/:user2Id', (req, res) => {
     Request.findAll({
         where: {
             user2Id: req.params["user2Id"]
-        }
-    }).then((requests)=>{
+        },
+        include: [{model: User, as: 'user1'}, {model: User, as: 'user2'}, {model: Book, as: 'book1'}, {model: Book, as: 'book2'}]
+    }).then((request)=>{
         res.status(200)
         res.json({requests: requests})
     })

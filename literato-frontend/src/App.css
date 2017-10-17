@@ -1,6 +1,6 @@
 .App {
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     overflow: hidden;
 }
 
@@ -25,9 +25,8 @@ body {
 .sidebar {
     background: #E6ECF0;
     color: #0084b4;
-    flex: 1;
     flex-direction: column;
-    width: 12%;
+    min-width: 120px;
     min-height: 100vh;
     position: absolute;
 
@@ -74,11 +73,6 @@ body {
     text-decoration: none;
 }
 
-/*.flex-item .book-description {
-    max-width: 90%;
-    min-width: 75%;
-}*/
-
 .flex-item .btn-default {
     bottom: 10px;
     position: absolute;
@@ -88,6 +82,7 @@ body {
 
 .sidebar ul {
     list-style-type: none;
+    padding: 5px 20px 0 20px;
 }
 
 .forms {
@@ -114,8 +109,6 @@ body {
 
 
 
-
-
 /*********************************
 		SEARCH COMPONENTS
 *********************************/
@@ -123,4 +116,75 @@ body {
 
 .book {
     margin: 50px 0;
+}
+
+/*********************************
+		DASHBOARD STYLES
+*********************************/
+
+.overview {
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+    order: 3;
+    padding: 20px;
+    width: 60%;
+
+}
+
+.overview div {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+    height: 300px;
+    min-width: 200px;
+    width: 27%;
+}
+
+.overview h3 {
+    text-align: center;
+}
+
+/*********************************
+		MAKE TRADES
+*********************************/
+
+.trades {
+    display: flex;
+    background-color: tomato;
+    margin: 20px auto;
+    width: 60%;
+}
+
+.trades h1 {
+    display: block;
+}
+
+.trades ul li {
+    color: black;
+    list-style-type: none;
+}
+/*********************************
+		MEDIA QUERIES
+*********************************/
+
+@media all and (max-width: 650px) {
+    .sidebar {
+        min-height: 55px;
+        width: 100%;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .overview {
+        margin-top: 50px;
+    }
+
+    .trades {
+        margin: 100px auto !important;
+    }
 }

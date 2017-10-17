@@ -22,8 +22,6 @@ export function deleteBook(id) {
     })
 }
 
-
-
 export function handleNewBook(params){
     return ((dispatch) => {
         fetch('http://localhost:3000/books',
@@ -46,7 +44,7 @@ export function handleNewBook(params){
                 })
             }else{
                 dispatch({
-                    type: 'ADD_BOOK',
+                    type: 'ADD_BOOK', 
                     payload: parsedResponse.books
                 })
             }

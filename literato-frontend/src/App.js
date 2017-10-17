@@ -6,9 +6,14 @@ import './App.css';
 import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
-import Dashboard from './components/dashboard/dashboard'
+import Profile from './components/dashboard/profile'
+import Pending from './components/dashboard/pending'
+import MakeTrades from './components/dashboard/make-trades'
 import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
 import { deleteBook, loadBooks } from './actions/BookActions'
+import Dashboard from './components/dashboard/dashboard'
+
+
 
 const mapComponentToProps = (store) =>{
     return {
@@ -52,36 +57,51 @@ export default connect(mapComponentToProps)(
             return (
                 <Router>
                     <div>
-
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
+
                                 <div className="forms">
                                     <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                    {this.props.user && <Redirect to='/dashboard' />}
+                                    {this.props.user && <Redirect to='/profile' />}
                                     <Login onSubmit={this.handleUserLogin.bind(this)} />
                                     {this.props.user &&
-                                    <Redirect to='/dashboard' />}
+                                    <Redirect to='/profile' />}
                                 </div>
+                            </div>
+                        )}/>
+                        <Route exact path='/profile' render={props => (
+                            <div>
+                                <Profile onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
-                                {!this.props.user && <Redirect to='/login' />}
+                                <Dashboard />
+                            </div>
+                        )}/>
+                        <Route exact path='/make-trades' render={props => (
+                            <div>
+                                <MakeTrades />
+                            </div>
+                        )}/>
+                        <Route exact path='/pending' render={props => (
+                            <div>
+                                <Pending />
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (
                             <div>
                                 <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                {this.props.user && <Redirect to='/dashboard' />}
+                                {this.props.user && <Redirect to='/profile' />}
                             </div>
                         )}/>
                         <Route exact path='/login' render={props => (
                             <div>
                                 <Login onSubmit={this.handleUserLogin.bind(this)} />
                                 {this.props.user &&
-                                <Redirect to='/dashboard' />}
+                                <Redirect to='/profile' />}
                             </div>
                         )}/>
                     </div>
