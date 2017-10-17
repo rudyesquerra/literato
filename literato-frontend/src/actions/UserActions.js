@@ -33,9 +33,27 @@ export function handleCheckLogin(apiUrl){
             .then((parsedResponse) => {
                 if(parsedResponse.user){
                     dispatch (loadBooks(apiUrl, parsedResponse.user.id))
+                    dispatch (loadRequests(apiUrl, parsedResponse.user.id))
                 }
             })
         }
+    })
+}
+
+function loadRequests(url, id) {
+    return ((dispatch) => {
+        fetch(`${url}/requests/${id}`)
+        .then((rawResponse) => {
+            console.log(rawResponse)
+            return rawResponse.json()
+        })
+        .then((parsedResponse) => {
+            console.log(parsedResponse)
+            dispatch({
+                type: 'FETCHED_REQUESTS',
+                payload: parsedResponse.requests
+            })
+        })
     })
 }
 

@@ -2,7 +2,8 @@ const initialState = {
     currentUser: null,
     error: null,
     logInUserSuccess: false,
-    newUserSuccess: false
+    newUserSuccess: false,
+    requests: []
 }
 export default (currentState=initialState, action) =>{
     let newState
@@ -53,6 +54,14 @@ export default (currentState=initialState, action) =>{
                 {},
                 currentState,
                 {currentUser: null, error: null, logInUserSuccess: false}
+            )
+            break;
+        }
+        case("FETCHED_REQUESTS"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {requests: action.payload}
             )
             break;
         }
