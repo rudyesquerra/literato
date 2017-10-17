@@ -62,6 +62,9 @@ export default connect(mapComponentToProps)(
                                 <h4 className="book-title">{books.title}</h4>
                                 <h5 className="book-authors">{books.authors}</h5>
                                 <h6 className="book-owner">Owned by {books.username}</h6>
+                                <Button onClick='' className="trade-book btn btn-default">
+                                Trade Book
+                                </Button>
                                 </div>
                             </li>
                         )
