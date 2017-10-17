@@ -5,6 +5,7 @@ var app = express();
 var Book = require('./models').Book
 var cors = require('cors')
 var User = require('./models').User
+var Request = require('./models').Request
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -175,5 +176,42 @@ app.post('/books/destroy', (req, res) => {
         res.json({errors: "Error, couldn't fetch Book"})
     })
 })
+
+// app.post('/requests/pending', (req, res) => {
+//                 Request.create({
+//                     user1Id: req.body.user1Id,
+//                     user2Id: req.body.user2Id,
+//                     book2Id: req.body.book2Id
+//                 })
+//                 .then((request) => {
+//                     Request.findAll().then((requests) => {
+//                         res.status(201)
+//                         res.json({requests: requests})
+//                     })
+//                 })
+// })
+
+app.get('/requests/:user2Id', (req, res) => {
+    Request.findAll({
+        where: {
+            user2Id: req.params["id"]
+        }
+    }).then((request)=>{
+        res.status(200)
+        res.json({request: request})
+    })
+})
+
+// app.get('/books/:userId', (req, res) => {
+//     Book.findAll({
+//         where: {
+//             userId: req.params["userId"]
+//         }
+//     }).then((books)=>{
+//         res.status(200)
+//         res.json({books: books})
+//     })
+// })
+
 
 module.exports = app

@@ -11,7 +11,15 @@ module.exports = function(sequelize, DataTypes) {
           Book.belongsTo(models.User,{
               foreignKey: 'userId',
               onDelete: 'CASCADE'
-          })
+          }),
+          Book.hasMany(models.Request, {
+              foreignKey: 'book1Id',
+              as: 'Requests'
+          }),
+          Book.hasMany(models.Request, {
+             foreignKey: 'book2Id',
+             as: 'Requests'
+         })
       }
     }
   });

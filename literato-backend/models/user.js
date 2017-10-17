@@ -18,6 +18,14 @@ module.exports = function(sequelize, DataTypes) {
                 User.hasMany(models.Book, {
                     foreignKey: 'userId',
                     as: 'books'
+                }),
+                User.hasMany(models.Request, {
+                    foreignKey: 'user1Id',
+                    as: 'Requests'
+                }),
+                User.hasMany(models.Request, {
+                    foreignKey: 'user2Id',
+                    as: 'Requests'
                 })
             }
         },
