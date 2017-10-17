@@ -180,41 +180,49 @@ app.post('/books/destroy', (req, res) => {
     })
 })
 
-// app.post('/requests/pending', (req, res) => {
-//                 Request.create({
-//                     user1Id: req.body.user1Id,
-//                     user2Id: req.body.user2Id,
-//                     book2Id: req.body.book2Id
-//                 })
-//                 .then((request) => {
-//                     Request.findAll().then((requests) => {
-//                         res.status(201)
-//                         res.json({requests: requests})
-//                     })
-//                 })
-// })
+app.post('/requests/pending', (req, res) => {
+                Request.create({
+                    user1Id: req.body.user1Id,
+                    user2Id: req.body.user2Id,
+                    book2Id: req.body.book2Id
+                })
+                .then((requests) => {
+                    Request.findAll().then((requests) => {
+                        res.status(201)
+                        res.json({requests: requests})
+                    })
+                })
+})
 
 app.get('/requests/:user2Id', (req, res) => {
     Request.findAll({
         where: {
-            user2Id: req.params["id"]
+            user2Id: req.params["user2Id"]
         }
-    }).then((request)=>{
+    }).then((requests)=>{
         res.status(200)
-        res.json({request: request})
+        res.json({requests: requests})
     })
 })
 
-// app.get('/books/:userId', (req, res) => {
-//     Book.findAll({
-//         where: {
-//             userId: req.params["userId"]
-//         }
-//     }).then((books)=>{
-//         res.status(200)
-//         res.json({books: books})
-//     })
-// })
+app.put('/requests/:user2Id', (req, res) => {
+    Request.findAll({
+        where: {
+            user1Id: req.params["user1Id"],
+            user2Id: req.params["user2Id"],
+            book2Id: req.params["book2Id"]
+        }
+    }).then(()=>{
+         res.send ({
+            book1Id: req.body.book1Id
+         })
+        }).then((request) => {
+                    Request.findAll().then((requests) => {
+                        res.status(201)
+                        res.json({requests: requests})
+                    })
+           })
+})
 
 
 module.exports = app
