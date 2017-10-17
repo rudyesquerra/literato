@@ -39,9 +39,6 @@ export default connect(mapComponentToProps)(
         render() {
             return(
                 <div className="main">
-
-
-
                     <h1>My Books</h1>
                     {this.props.user && this.props.userBooks &&
                         <ol className="my-books-list">

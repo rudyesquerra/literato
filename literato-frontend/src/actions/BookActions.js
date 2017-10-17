@@ -44,7 +44,7 @@ export function handleNewBook(params){
                 })
             }else{
                 dispatch({
-                    type: 'ADD_BOOK',
+                    type: 'ADD_BOOK', 
                     payload: parsedResponse.books
                 })
             }

@@ -51,7 +51,8 @@ export default (currentState=initialState, action) =>{
                     books: action.payload,
                     newBookSuccess: true,
                     errors: null,
-                    searchResults: []
+                    searchResults: [],
+                    userBooks: action.payload
                 }
             )
             break
