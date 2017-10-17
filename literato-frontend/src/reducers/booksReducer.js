@@ -1,7 +1,7 @@
 const initialState = {
     deleteBookSuccess: false,
-    books: [],
     userBooks: [],
+    books: [],
     errors: null,
     newBookSuccess: false,
     searchResults: []
