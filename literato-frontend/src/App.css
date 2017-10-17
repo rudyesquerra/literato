@@ -145,3 +145,23 @@ body {
 .overview h3 {
     text-align: center;
 }
+
+/*********************************
+		MEDIA QUERIES
+*********************************/
+
+@media all and (max-width: 650px) {
+    .sidebar {
+        min-height: 55px;
+        width: 100%;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .overview {
+        margin-top: 50px;
+    }
+}
