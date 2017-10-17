@@ -76,17 +76,20 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard />
+                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/make-trades' render={props => (
                             <div>
-                                <MakeTrades />
+                                <MakeTrades onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/pending' render={props => (
                             <div>
-                                <Pending />
+                                <Pending onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (

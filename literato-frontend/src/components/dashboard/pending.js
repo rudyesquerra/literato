@@ -15,7 +15,7 @@ const mapComponentToProps = (store) =>{
 
 export default connect(mapComponentToProps)(
 
-    class MakeTrades extends Component {
+    class Pending extends Component {
 
 
         handleLogout(){
@@ -23,6 +23,7 @@ export default connect(mapComponentToProps)(
         }
 
         render() {
+            console.log(this.props.requests)
             return(
                 <div>
                     <Header />
@@ -38,7 +39,7 @@ export default connect(mapComponentToProps)(
                                             <p>Requested book: {request.book2.title}</p>
                                             <p>From: {request.user1.username}</p>
                                             <p>{request.createdAt}</p>
-                                            <button>See {request.user1.username}'s books</button>
+                                            <button>See {request.user1.username} books</button>
                                         </div>
                                     </li>
                                 )
