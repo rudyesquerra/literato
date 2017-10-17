@@ -203,24 +203,24 @@ app.get('/requests/:user2Id', (req, res) => {
     })
 })
 
-app.put('/requests/:user2Id', (req, res) => {
-    Request.findAll({
+app.put('/requests/:id', (req, res) => {
+    Request.findById({
         where: {
-            user1Id: req.params["user1Id"],
-            user2Id: req.params["user2Id"],
-            book2Id: req.params["book2Id"]
+            id: req.params["id"]
         }
-    }).then(()=>{
-         res.send ({
+    }).then((request)=>{
+        request.save({
             book1Id: req.body.book1Id
-         })
-        }).then((request) => {
-                    Request.findAll().then((requests) => {
-                        res.status(201)
-                        res.json({requests: requests})
-                    })
-           })
+        })
+    }).then((request) => {
+        res.status(201)
+        res.json({request: request})
+    }).catch((error) => {
+        res.status(400)
+        res.json({errors: "Request not found"})
+    })
 })
+
 
 
 module.exports = app
