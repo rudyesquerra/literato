@@ -53,16 +53,58 @@ export default connect(mapComponentToProps)(
         	}
         }
 
+        handleTradeRequest(params){
+            fetch('http://localhost:3000/requests/pending',
+                {
+                    body: JSON.stringify(params),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'POST'
+                }
+            )
+            .then((rawResponse) => {
+                return rawResponse.json()
+            })
+            .then((parsedResponse) => {
+                if(parsedResponse.errors) {
+                    this.setState({ errors: parsedResponse.errors })
+                } else{
+                    const request = Object.assign([], this.state.request)
+                    request.push(parsedResponse.request)
+                    this.setState(
+                        {
+                            request: request,
+                            errors: null,
+                            tradeSuccess: true
+                        }
+                    )
+                }
+            })
+        }
+
+        handleSubmit(event){
+ 		var trade  = {
+ 			user1Id: this.props.user.id,
+ 			user2Id: this.state.dbBooks[0].userId,
+ 			book2Id: this.state.dbBooks[0].id
+ 		}
+ 		event.preventDefault()
+ 		this.handleTradeRequest(trade)
+ 	}
+
         render(){
-            {console.log('dbBooks 0: ' + JSON.stringify(this.state.dbBooks.username))}
+
+
                     var list = this.state.dbBooks.map((books, index) => {
                         return(
                             <li key={index}>
                                 <div>
+                                {console.log(this.props.user.id)}
                                 <h4 className="book-title">{books.title}</h4>
                                 <h5 className="book-authors">{books.authors}</h5>
                                 <h6 className="book-owner">Owned by {books.username}</h6>
-                                <Button onClick='' className="trade-book btn btn-default">
+                                <Button onClick={this.handleSubmit.bind(this)} className="trade-book btn btn-default">
                                 Trade Book
                                 </Button>
                                 </div>

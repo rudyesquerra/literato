@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { handleUserLogout } from '../../actions/UserActions'
 import Header from './header'
 import Sidebar from './sidebar'
+import DataBaseSearch from '../database-search.js'
 
 class MakeTrades extends Component {
     handleLogout(){
@@ -16,6 +17,7 @@ class MakeTrades extends Component {
                 <Header />
                     <Button bsStyle="link" className="sign-out-link" onClick={this.handleLogout.bind(this)}>Sign Out</Button>
                 <Sidebar />
+                <DataBaseSearch />
             </div>
         )
     }
