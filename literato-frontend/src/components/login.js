@@ -51,6 +51,10 @@ class Login extends Component{
                         onClick={this.handleSubmit.bind(this)}
                         id='submit'>Login
                     </Button>
+                    &nbsp;
+                    <Button
+                        href='/signup'>Sign Up
+                    </Button>
                 </form>
             </div>
 

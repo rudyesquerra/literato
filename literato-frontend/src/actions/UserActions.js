@@ -104,11 +104,10 @@ export function handleNewUser(apiUrl, params){
                     payload: parsedResponse.errors
                 })
             }else{
-                localStorage.setItem('userEmail', parsedResponse.user.email);
-                    dispatch({
-                        type: "SIGNUP",
-                        payload: parsedResponse.user
-                    })
+                dispatch({
+                    type: "SIGNUP",
+                    payload: parsedResponse.user
+                })
             }
         })
     })

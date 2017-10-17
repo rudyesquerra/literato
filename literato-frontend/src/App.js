@@ -63,8 +63,6 @@ export default connect(mapComponentToProps)(
                                 <Header />
 
                                 <div className="forms">
-                                    <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                    {this.props.user && <Redirect to='/profile' />}
                                     <Login onSubmit={this.handleUserLogin.bind(this)} />
                                     {this.props.user &&
                                     <Redirect to='/profile' />}
@@ -98,13 +96,13 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/signup' render={props => (
                             <div>
                                 <Signup onSubmit={this.handleNewUser.bind(this)}/>
-                                {this.props.user && <Redirect to='/profile' />}
+                                {this.props.newUserSuccess && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/login' render={props => (
                             <div>
                                 <Login onSubmit={this.handleUserLogin.bind(this)} />
-                                {this.props.user &&
+                                {this.props.logInUserSuccess &&
                                 <Redirect to='/profile' />}
                             </div>
                         )}/>
