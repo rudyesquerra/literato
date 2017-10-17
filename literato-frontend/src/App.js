@@ -7,9 +7,14 @@ import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
 import Profile from './components/dashboard/profile'
+import Pending from './components/dashboard/pending'
+import MakeTrades from './components/dashboard/make-trades'
+import DataBaseSearch from './components/database-search.js'
 import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
 import { deleteBook, loadBooks } from './actions/BookActions'
 import Dashboard from './components/dashboard/dashboard'
+
+
 
 const mapComponentToProps = (store) =>{
     return {
@@ -56,6 +61,7 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
+
                                 <div className="forms">
                                     <Signup onSubmit={this.handleNewUser.bind(this)}/>
                                     {this.props.user && <Redirect to='/profile' />}
@@ -69,6 +75,9 @@ export default connect(mapComponentToProps)(
                             <div>
                                 <Profile onSubmit={this.handleLogout.bind(this)} />
                                 {!this.props.user && <Redirect to='/login' />}
+
+                                <DataBaseSearch />
+
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (

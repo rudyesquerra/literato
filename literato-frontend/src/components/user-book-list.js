@@ -25,7 +25,6 @@ export default connect(mapComponentToProps)(
             this.state = {
                 apiUrl: 'http://localhost:3000'
             }
-            console.log(this.props);
         }
 
 
@@ -38,9 +37,6 @@ export default connect(mapComponentToProps)(
         }
 
         render() {
-            {console.log(this.props.userBooks[0])}
-            {console.log(this.props.user)}
-
             return(
                 <div className="main">
                     <h1>My Books</h1>
