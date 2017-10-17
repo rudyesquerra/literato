@@ -6,7 +6,7 @@ import Header from './header'
 import Sidebar from './sidebar'
 import DataBaseSearch from '../database-search.js'
 
-class MakeTrades extends Component {
+class Pending extends Component {
     handleLogout(){
         this.props.onSubmit()
     }
@@ -23,4 +23,4 @@ class MakeTrades extends Component {
     }
 }
 
-export default MakeTrades;
+export default Pending;
