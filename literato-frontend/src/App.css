@@ -147,6 +147,25 @@ body {
 }
 
 /*********************************
+		MAKE TRADES
+*********************************/
+
+.trades {
+    display: flex;
+    background-color: tomato;
+    margin: 20px auto;
+    width: 60%;
+}
+
+.trades h1 {
+    display: block;
+}
+
+.trades ul li {
+    color: black;
+    list-style-type: none;
+}
+/*********************************
 		MEDIA QUERIES
 *********************************/
 
@@ -163,5 +182,9 @@ body {
 
     .overview {
         margin-top: 50px;
+    }
+
+    .trades {
+        margin: 100px auto !important;
     }
 }

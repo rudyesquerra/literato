@@ -194,8 +194,9 @@ app.post('/books/destroy', (req, res) => {
 app.get('/requests/:user2Id', (req, res) => {
     Request.findAll({
         where: {
-            user2Id: req.params["id"]
-        }
+            user2Id: req.params["user2Id"]
+        },
+        include: [{model: User, as: 'user1'}, {model: User, as: 'user2'}, {model: Book, as: 'book1'}, {model: Book, as: 'book2'}]
     }).then((request)=>{
         res.status(200)
         res.json({request: request})
