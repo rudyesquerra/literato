@@ -9,10 +9,10 @@ class Sidebar extends Component {
                         <h4>My Collection</h4>
                     </li>
                     <li>
-                        <h4>My Trades</h4>
+                        <h4>Make Trades</h4>
                     </li>
                     <li>
-                        <h4>Search</h4>
+                        <h4>Pending Trades</h4>
                     </li>
                 </ul>
             </div>
