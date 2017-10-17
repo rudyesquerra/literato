@@ -19,7 +19,7 @@ class Dashboard extends Component {
                 <Sidebar />
                 <div className="overview">
                     <div>
-                        <Link to ='/href'>
+                        <Link to ='/make-trades'>
                             <h3>Make Trades</h3>
                         </Link>
                     </div>
@@ -29,7 +29,7 @@ class Dashboard extends Component {
                         </Link>
                     </div>
                     <div>
-                        <Link to ='/href'>
+                        <Link to ='/pending'>
                             <h3>Pending Trades</h3>
                         </Link>
                     </div>

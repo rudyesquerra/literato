@@ -85,6 +85,16 @@ export default connect(mapComponentToProps)(
                                 <Dashboard />
                             </div>
                         )}/>
+                        <Route exact path='/make-trades' render={props => (
+                            <div>
+                                <MakeTrades />
+                            </div>
+                        )}/>
+                        <Route exact path='/pending' render={props => (
+                            <div>
+                                <Pending />
+                            </div>
+                        )}/>
                         <Route exact path='/signup' render={props => (
                             <div>
                                 <Signup onSubmit={this.handleNewUser.bind(this)}/>
