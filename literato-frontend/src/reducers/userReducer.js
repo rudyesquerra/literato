@@ -5,6 +5,7 @@ const initialState = {
     newUserSuccess: false,
     requests: [],
     currentRequest: null,
+    loading: true
 }
 export default (currentState=initialState, action) =>{
     let newState
@@ -13,7 +14,7 @@ export default (currentState=initialState, action) =>{
           newState = Object.assign(
               {},
               currentState,
-              {currentRequest: action.payload}
+              {currentRequest: action.payload, loading: false}
           )
           break;
       }
@@ -21,7 +22,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {currentUser: action.payload, error: null}
+                {currentUser: action.payload, error: null, loading: false}
             )
             break;
         }
@@ -29,7 +30,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {currentUser: null, error: action.payload}
+                {currentUser: null, error: action.payload,loading: false}
             )
             break;
         }
@@ -38,7 +39,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {currentUser: action.payload, error: null, logInUserSuccess: true, newUserSuccess: false}
+                {currentUser: action.payload, error: null, logInUserSuccess: true, newUserSuccess: false, loading: false}
             )
             break;
         }
@@ -46,7 +47,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {currentUser: null, error: action.payload}
+                {currentUser: null, error: action.payload, loading: false}
             )
             break;
         }
@@ -62,7 +63,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {currentUser: null, error: null, logInUserSuccess: false}
+                {currentUser: null, error: null, logInUserSuccess: false, loading: false}
             )
             break;
         }
@@ -70,7 +71,7 @@ export default (currentState=initialState, action) =>{
             newState = Object.assign(
                 {},
                 currentState,
-                {requests: action.payload}
+                {requests: action.payload, loading: false}
             )
             break;
         }
