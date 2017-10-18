@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
-import { handleUserLogout } from '../../actions/UserActions'
+import { handleUserLogout, viewUserBooks } from '../../actions/UserActions'
 import Header from './header'
 import Sidebar from './sidebar'
 
@@ -22,6 +22,11 @@ export default connect(mapComponentToProps)(
             this.props.onSubmit()
         }
 
+        handleOnClick(request){
+            this.props.dispatch(viewUserBooks(request))
+            return true
+        }
+
         render() {
             console.log(this.props.requests)
             return(
@@ -39,7 +44,7 @@ export default connect(mapComponentToProps)(
                                             <p>Requested book: {request.book2.title}</p>
                                             <p>From: {request.user1.username}</p>
                                             <p>{request.createdAt}</p>
-                                            <button>See {request.user1.username} books</button>
+                                            <Link to="/current-request" onClick={this.handleOnClick.bind(this, request)}>See {request.user1.username} books</Link>
                                         </div>
                                     </li>
                                 )

@@ -1,65 +1,76 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import {connect} from 'react-redux'
-import { deleteBook, loadBooks } from '../actions/BookActions'
+import { deleteBook, loadBooks, tradeBook } from '../actions/BookActions'
 import { handleCheckLogin } from '../actions/UserActions'
 
-const mapComponentToProps = (store) =>{
-    // console.log(store.user);
+class UserBookList extends Component {
 
-    return {
-        user: store.user.currentUser,
-        userError: store.user.error,
-        userBooks: store.books.userBooks,
-        delete: store.books.deleteBookSuccess,
-        books: store.books.books,
+    constructor(props) {
+        super(props)
+        this.state = {
+            apiUrl: 'http://localhost:3000'
+        }
     }
 
-}
 
-export default connect(mapComponentToProps)(
-    class UserBookList extends Component {
+    componentWillMount(){
+        this.props.dispatch(handleCheckLogin(this.state.apiUrl))
+    }
 
-        constructor(props) {
-            super(props)
-            this.state = {
-                apiUrl: 'http://localhost:3000'
-            }
-        }
+    handleDeleteBook(bookId) {
+      this.props.dispatch(deleteBook(bookId))
+    }
 
+    handleCompleteTrade(bookId){
+      this.props.dispatch(tradeBook(this.props.currentRequest, bookId))
+    }
 
-        componentWillMount(){
-            this.props.dispatch(handleCheckLogin(this.state.apiUrl))
-        }
-
-        handleDeleteBook(bookId) {
-          this.props.dispatch(deleteBook(bookId))
-        }
-
-        render() {
+    action(userBook){
+        if(this.props.currentRequest){
             return(
-                <div className="main">
-                    <h1>My Books</h1>
-                    {this.props.user && this.props.userBooks &&
-                        <ol className="my-books-list">
-                            {this.props.userBooks && this.props.userBooks.map((userBooks, index) => {
-                                return(
-                                    <li key={index} className="flex-item">
-                                        <div>
-                                            <img src={userBooks.image}/>
-                                            <h4 className="book-title">{userBooks.title}</h4>
-                                            <h5 className="book-authors">{userBooks.authors}</h5>
-                                            <Button onClick={this.handleDeleteBook.bind(this, userBooks.id)} className="delete-book btn btn-default">
-                                            Delete Book
-                                            </Button>
-                                        </div>
-                                    </li>
-                                )
-                            })}
-                        </ol>
-                    }
-                </div>
+                <Button onClick={this.handleCompleteTrade.bind(this, userBook.id)} className="trade-book btn btn-default">
+                Trade for Book
+                </Button>
+            )
+
+        } else {
+            return (
+                <Button onClick={this.handleDeleteBook.bind(this, userBook.id)} className="delete-book btn btn-default">
+                Delete Book
+                </Button>
             )
         }
     }
-)
+
+    render() {
+        var title
+        if (this.props.currentRequest){
+          title = <h1>{this.props.user.username}&#39;s Books</h1>
+        } else {
+          title = <h1>My Books</h1>
+        }
+        return(
+            <div className="main">
+                { title }
+                {this.props.user && this.props.userBooks &&
+                    <ol className="my-books-list">
+                        {this.props.userBooks && this.props.userBooks.map((userBooks, index) => {
+                            return(
+                                <li key={index} className="flex-item">
+                                    <div>
+                                        <img src={userBooks.image}/>
+                                        <h4 className="book-title">{userBooks.title}</h4>
+                                        <h5 className="book-authors">{userBooks.authors}</h5>
+                                        {this.action(userBooks)}
+                                    </div>
+                                </li>
+                            )
+                        })}
+                    </ol>
+                }
+            </div>
+        )
+    }
+}
+
+export default UserBookList

@@ -1,4 +1,19 @@
+var apiUrl
+if(process.env.NODE_ENV === 'production'){
+  apiUrl = ""
+} else {
+  apiUrl = "http://localhost:3000"
+}
 
+export function viewUserBooks(request) {
+    return ((dispatch) => {
+      dispatch (loadUser1Books(apiUrl, request.user1Id))
+      dispatch({
+          type: 'VIEW_REQUEST',
+          payload: request
+      })
+    })
+}
 
 export function handleCheckLogin(apiUrl){
     return ((dispatch)=> {
@@ -72,6 +87,20 @@ function loadBooks(url, id) {
     })
 }
 
+function loadUser1Books(url, id) {
+    return ((dispatch) => {
+        fetch(`${url}/books/${id}`)
+        .then((rawResponse) => {
+            return rawResponse.json()
+        })
+        .then((parsedResponse) => {
+            dispatch({
+                type: 'LOAD_USER1_BOOKS',
+                payload: parsedResponse.books
+            })
+        })
+    })
+}
 export function handleUserLogin(apiUrl, params){
     return ((dispatch) => {
         fetch(`${apiUrl}/login`,
