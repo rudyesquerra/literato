@@ -5,7 +5,11 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --watch",
+    "start": "node literato-backend/index.js",
+    "heroku-postbuild": "cd literato-backend && sequelize db:migrate && cd .. && cd literato-frontend && yarn install && yarn build"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
