@@ -9,10 +9,11 @@ import Header from './components/dashboard/header'
 import Profile from './components/dashboard/profile'
 import Pending from './components/dashboard/pending'
 import MakeTrades from './components/dashboard/make-trades'
+import UserBookList from './components/user-book-list'
+
 import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
 import { deleteBook, loadBooks } from './actions/BookActions'
 import Dashboard from './components/dashboard/dashboard'
-
 
 
 const mapComponentToProps = (store) =>{
@@ -23,7 +24,9 @@ const mapComponentToProps = (store) =>{
         newUserSuccess: store.user.newUserSuccess,
         books: store.books.books,
         delete: store.books.deleteBookSuccess,
-        userBooks: store.books.userBooks
+        userBooks: store.books.userBooks,
+        currentRequest: store.user.currentRequest,
+        user1Books: store.books.user1Books
     }
 }
 
@@ -70,7 +73,7 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/profile' render={props => (
                             <div>
-                                <Profile onSubmit={this.handleLogout.bind(this)} />
+                                <Profile onSubmit={this.handleLogout.bind(this)} user={this.props.user} userBooks={this.props.userBooks} dispatch={this.props.dispatch}/>
                                 {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
@@ -83,6 +86,12 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/make-trades' render={props => (
                             <div>
                                 <MakeTrades onSubmit={this.handleLogout.bind(this)} />
+                                {!this.props.user && <Redirect to='/login' />}
+                            </div>
+                        )}/>
+                      <Route exact path='/current-request' render={props => (
+                            <div>
+                                <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} dispatch={this.props.dispatch}/>
                                 {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>

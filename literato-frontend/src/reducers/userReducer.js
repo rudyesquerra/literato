@@ -3,11 +3,20 @@ const initialState = {
     error: null,
     logInUserSuccess: false,
     newUserSuccess: false,
-    requests: []
+    requests: [],
+    currentRequest: null,
 }
 export default (currentState=initialState, action) =>{
     let newState
     switch(action.type){
+      case("VIEW_REQUEST"):{
+          newState = Object.assign(
+              {},
+              currentState,
+              {currentRequest: action.payload}
+          )
+          break;
+      }
         case("FETCHED_USER"):{
             newState = Object.assign(
                 {},

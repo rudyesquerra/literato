@@ -9,6 +9,7 @@ module.exports = {
       authors: 'You',
       description: 'a book',
       image: 'asdfasdf',
+      userId: 1,
       createdAt: '20170909T1000',
       updatedAt: '20170909T1000'
     },
@@ -17,6 +18,7 @@ module.exports = {
       authors: 'Me',
       description: 'another book',
       image: 'asdfasdf',
+      userId: 2,
       createdAt: '20170909T1000',
       updatedAt: '20170909T1000'
     },
@@ -25,6 +27,7 @@ module.exports = {
       authors: 'Him',
       description: 'third book',
       image: 'asdfasdf',
+      userId: 2,
       createdAt: '20170909T1000',
       updatedAt: '20170909T1000'
     }

@@ -4,12 +4,23 @@ const initialState = {
     books: [],
     errors: null,
     newBookSuccess: false,
-    searchResults: []
+    searchResults: [],
+    user1Books: []
 }
 
 export default (currentState=initialState, action) =>{
     let newState
     switch(action.type){
+      case("TRADED_BOOK"):{
+          newState = Object.assign(
+              {},
+              currentState,
+              {
+                // TODO show a message
+              }
+          )
+          break;
+      }
         case("DELETE_BOOK"):{
             newState = Object.assign(
                 {},
@@ -28,6 +39,17 @@ export default (currentState=initialState, action) =>{
                 {
                     deleteBookSuccess: false,
                     userBooks: action.payload
+                }
+            )
+            console.log("hello" + action.payload)
+            break;
+        }
+        case("LOAD_USER1_BOOKS"):{
+            newState = Object.assign(
+                {},
+                currentState,
+                {
+                    user1Books: action.payload
                 }
             )
             console.log("hello" + action.payload)

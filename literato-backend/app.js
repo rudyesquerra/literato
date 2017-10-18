@@ -212,6 +212,7 @@ app.put('/requests/:id', (req, res) => {
         request.save({
             book1Id: req.body.book1Id
         })
+    // TODO then archive both books
     }).then((request) => {
         res.status(201)
         res.json({request: request})

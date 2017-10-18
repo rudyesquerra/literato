@@ -20,7 +20,7 @@ class Profile extends Component {
                     <Button bsStyle="link" className="sign-out-link" onClick={this.handleLogout.bind(this)}>Sign Out</Button>
                 <Sidebar />
                 <SearchToAdd />
-                <UserBookList books={this.props.books} />
+                <UserBookList books={this.props.books} user={this.props.user} userBooks={this.props.userBooks} dispatch={this.props.dispatch}/>
                     {this.props.delete && <Redirect to='/profile'/>}
             </div>
         )
