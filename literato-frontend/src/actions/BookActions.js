@@ -1,4 +1,24 @@
-
+export function tradeBook(request, bookId){
+  return ((dispatch) => {
+    fetch(`http://localhost:3000/request/${request.id}`,
+      {
+          body: JSON.stringify({book1Id: bookId}),
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          method: 'PUT'
+      })
+      .then((rawResponse) => {
+          return rawResponse.json()
+      })
+      .then((parsedResponse) => {
+          dispatch({
+              type: 'TRADED_BOOK',
+              payload: parsedResponse.request
+          })
+      })    
+  })
+}
 export function deleteBook(id) {
     return ((dispatch) => {
         fetch('http://localhost:3000/books/destroy',
@@ -44,7 +64,7 @@ export function handleNewBook(params){
                 })
             }else{
                 dispatch({
-                    type: 'ADD_BOOK', 
+                    type: 'ADD_BOOK',
                     payload: parsedResponse.books
                 })
             }
