@@ -113,9 +113,9 @@ export default connect(mapComponentToProps)(
                     })
 
         	return(
-                <Row>
-                	<Col md={12}>
-                		<FormControl type="text" id='searchText' placeholder="Search" onChange={this.handleKeyPress.bind(this)}/>
+                <Row className="database-search-container">
+                	<Col xs={12} md={6} lg={6}>
+                		<FormControl type="text" id='searchText' className="database-searchbar" placeholder="Search" onChange={this.handleKeyPress.bind(this)}/>
                     	<Button id="search" bsStyle="primary" onClick={this.search.bind(this)}> Search</Button>
         				<ol>
         					{list}
