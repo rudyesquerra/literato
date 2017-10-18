@@ -100,7 +100,6 @@ export default connect(mapComponentToProps)(
                         return(
                             <li key={index}>
                                 <div>
-                                {console.log(this.props.user.id)}
                                 <h4 className="book-title">{books.title}</h4>
                                 <h5 className="book-authors">{books.authors}</h5>
                                 <h6 className="book-owner">Owned by {books.username}</h6>
