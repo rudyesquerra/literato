@@ -68,6 +68,7 @@ class UserBookList extends Component {
                         })}
                     </ol>
                 }
+                {this.props.successMessage}
             </div>
         )
     }

@@ -26,7 +26,9 @@ const mapComponentToProps = (store) =>{
         delete: store.books.deleteBookSuccess,
         userBooks: store.books.userBooks,
         currentRequest: store.user.currentRequest,
-        user1Books: store.books.user1Books
+        user1Books: store.books.user1Books,
+        tradeSuccess: store.books.tradeSuccess,
+        successMessage: store.books.successMessage
     }
 }
 
@@ -73,13 +75,13 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/profile' render={props => (
                             <div>
-                                <Profile onSubmit={this.handleLogout.bind(this)} user={this.props.user} userBooks={this.props.userBooks} dispatch={this.props.dispatch}/>
+                                <Profile onSubmit={this.handleLogout.bind(this)} user={this.props.user} userBooks={this.props.userBooks}  dispatch={this.props.dispatch}/>
                                 {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
+                                <Dashboard onSubmit={this.handleLogout.bind(this)} successMessage={this.props.successMessage}  />
                                 {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
@@ -91,7 +93,7 @@ export default connect(mapComponentToProps)(
                         )}/>
                       <Route exact path='/current-request' render={props => (
                             <div>
-                                <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} dispatch={this.props.dispatch}/>
+                                <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} successMessage={this.props.successMessage} dispatch={this.props.dispatch}/>
                                 {!this.props.user && <Redirect to='/login' />}
                             </div>
                         )}/>
