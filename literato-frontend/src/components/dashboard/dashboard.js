@@ -17,6 +17,8 @@ class Dashboard extends Component {
                 <Header />
                     <Button bsStyle="link" className="sign-out-link" onClick={this.handleLogout.bind(this)}>Sign Out</Button>
                 <Sidebar />
+                <div>
+                </div>
                 <div className="overview">
                     <div className="dashboard-box">
                         <Link to ='/make-trades'>

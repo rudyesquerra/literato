@@ -6,6 +6,7 @@ import './App.css';
 import Login from './components/login'
 import Signup from './components/signup'
 import Header from './components/dashboard/header'
+import Sidebar from './components/dashboard/sidebar'
 import Profile from './components/dashboard/profile'
 import Pending from './components/dashboard/pending'
 import MakeTrades from './components/dashboard/make-trades'
@@ -66,7 +67,6 @@ export default connect(mapComponentToProps)(
                         <Route exact path='/' render={props => (
                             <div className="App">
                                 <Header />
-
                                 <div className="forms">
                                     <Login onSubmit={this.handleUserLogin.bind(this)} />
                                     {this.props.user &&
@@ -94,8 +94,10 @@ export default connect(mapComponentToProps)(
                         )}/>
                       <Route exact path='/current-request' render={props => (
                             <div>
+                                <Header />
                                 <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} successMessage={this.props.successMessage} dispatch={this.props.dispatch}/>
                                 {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
+                                <Sidebar />
                             </div>
                         )}/>
                         <Route exact path='/pending' render={props => (
