@@ -49,7 +49,7 @@ class UserBookList extends Component {
         if (this.props.currentRequest){
           title = <h1>{this.props.user.username}&#39;s Books</h1>
         } else {
-          title = <h1>My Books</h1>
+          title = <h1>My Collection</h1>
         }
         return(
             <div className="main">
