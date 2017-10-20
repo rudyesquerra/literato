@@ -44,7 +44,7 @@ export default connect(mapComponentToProps)(
                                             <p>Requested book: {request.book2.title}</p>
                                             <p>From: {request.user1.username}</p>
                                             <p>{request.createdAt}</p>
-                                            <Link to="/current-request" onClick={this.handleOnClick.bind(this, request)}>See {request.user1.username} books</Link>
+                                            <Link to="/current-request" onClick={this.handleOnClick.bind(this, request)}>See {request.user1.username}&#39;s books</Link>
                                         </div>
                                     </li>
                                 )
