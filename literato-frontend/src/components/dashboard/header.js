@@ -5,7 +5,9 @@ class Header extends Component {
     render() {
         return(
             <header className="header">
-                <img className="App-logo" src="./literato-logo.png" />
+                <div className="logo-holder">
+                    <img className="App-logo" src="./literato-logo.png" />
+                </div>
             </header>
         )
     }

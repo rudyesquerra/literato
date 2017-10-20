@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700');
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
 .App {
     display: flex;
     flex-flow: row wrap;
@@ -6,19 +12,28 @@
 
 body {
     height: 100vh;
+    font-family: 'Rubik', sans-serif !important;
 }
 
 .App-logo {
     display: block;
-    margin: 0 auto;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logo-holder {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
 }
 
 .header {
     background-color: #0084b4;
-    height: 100px;
-    flex: 1 100%;
-    padding: 20px;
     color: white;
+    height: 100px;
+    padding: 20px;
 
 }
 
@@ -26,7 +41,7 @@ body {
     background: #E6ECF0;
     color: #0084b4;
     flex-direction: column;
-    min-width: 120px;
+    min-width: 200px;
     min-height: 100vh;
     position: absolute;
 
@@ -85,6 +100,16 @@ body {
     padding: 5px 20px 0 20px;
 }
 
+.sidebar p {
+    margin: 10px 0 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar p:hover {
+    text-decoration: none;
+}
+
 .forms {
     display: flex;
     flex: 1 100%;
@@ -134,7 +159,7 @@ body {
 
 }
 
-.overview div {
+.overview .dashboard-box {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 5px;
     height: 300px;
@@ -142,17 +167,28 @@ body {
     width: 27%;
 }
 
+.img-holder {
+    display: block;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.img-holder img {
+    max-height: 250px;
+}
+
+
 .overview h3 {
     text-align: center;
 }
 
 /*********************************
-		MAKE TRADES
+		PENDING
 *********************************/
 
 .trades {
     display: flex;
-    background-color: tomato;
     margin: 20px auto;
     width: 60%;
 }
@@ -165,6 +201,17 @@ body {
     color: black;
     list-style-type: none;
 }
+
+/***********************************************************
+		MAKE TRADES -- STYLING THE DATABASE SEARCHBAR
+************************************************************/
+
+.database-search-container {
+    display: flex;
+    justify-content: center;
+}
+
+
 /*********************************
 		MEDIA QUERIES
 *********************************/
