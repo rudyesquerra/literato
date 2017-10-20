@@ -204,15 +204,10 @@ app.get('/requests/:user2Id', (req, res) => {
 })
 
 app.put('/requests/:id', (req, res) => {
-    Request.findById({
-        where: {
-            id: req.params["id"]
-        }
-    }).then((request)=>{
+    Request.findById(req.params["id"]).then((request)=>{
         request.save({
             book1Id: req.body.book1Id
         })
-    // TODO then archive both books
     }).then((request) => {
         res.status(201)
         res.json({request: request})

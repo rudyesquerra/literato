@@ -5,7 +5,8 @@ const initialState = {
     errors: null,
     newBookSuccess: false,
     searchResults: [],
-    user1Books: []
+    user1Books: [],
+    successMessage: ""
 }
 
 export default (currentState=initialState, action) =>{
@@ -16,7 +17,7 @@ export default (currentState=initialState, action) =>{
               {},
               currentState,
               {
-                // TODO show a message
+                successMessage: "Trade was complete",
               }
           )
           break;
@@ -41,7 +42,6 @@ export default (currentState=initialState, action) =>{
                     userBooks: action.payload
                 }
             )
-            console.log("hello" + action.payload)
             break;
         }
         case("LOAD_USER1_BOOKS"):{

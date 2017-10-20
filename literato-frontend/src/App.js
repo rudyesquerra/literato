@@ -27,6 +27,8 @@ const mapComponentToProps = (store) =>{
         userBooks: store.books.userBooks,
         currentRequest: store.user.currentRequest,
         user1Books: store.books.user1Books,
+        tradeSuccess: store.books.tradeSuccess,
+        successMessage: store.books.successMessage,
         loading: store.user.loading
     }
 }
@@ -80,7 +82,7 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
-                                <Dashboard onSubmit={this.handleLogout.bind(this)} />
+                                <Dashboard onSubmit={this.handleLogout.bind(this)} successMessage={this.props.successMessage}  />
                                 {!this.props.user && (!this.props.loading)  && <Redirect to='/login' />}
                             </div>
                         )}/>
@@ -92,7 +94,7 @@ export default connect(mapComponentToProps)(
                         )}/>
                       <Route exact path='/current-request' render={props => (
                             <div>
-                                <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} dispatch={this.props.dispatch}/>
+                                <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} successMessage={this.props.successMessage} dispatch={this.props.dispatch}/>
                                 {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
                         )}/>
