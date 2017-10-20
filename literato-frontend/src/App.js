@@ -28,7 +28,8 @@ const mapComponentToProps = (store) =>{
         currentRequest: store.user.currentRequest,
         user1Books: store.books.user1Books,
         tradeSuccess: store.books.tradeSuccess,
-        successMessage: store.books.successMessage
+        successMessage: store.books.successMessage,
+        loading: store.user.loading
     }
 }
 
@@ -75,32 +76,32 @@ export default connect(mapComponentToProps)(
                         )}/>
                         <Route exact path='/profile' render={props => (
                             <div>
-                                <Profile onSubmit={this.handleLogout.bind(this)} user={this.props.user} userBooks={this.props.userBooks}  dispatch={this.props.dispatch}/>
-                                {!this.props.user && <Redirect to='/login' />}
+                                <Profile onSubmit={this.handleLogout.bind(this)} user={this.props.user} userBooks={this.props.userBooks} dispatch={this.props.dispatch}/>
+                                {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/dashboard' render={props => (
                             <div>
                                 <Dashboard onSubmit={this.handleLogout.bind(this)} successMessage={this.props.successMessage}  />
-                                {!this.props.user && <Redirect to='/login' />}
+                                {!this.props.user && (!this.props.loading)  && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/make-trades' render={props => (
                             <div>
                                 <MakeTrades onSubmit={this.handleLogout.bind(this)} />
-                                {!this.props.user && <Redirect to='/login' />}
+                                {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
                         )}/>
                       <Route exact path='/current-request' render={props => (
                             <div>
                                 <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} successMessage={this.props.successMessage} dispatch={this.props.dispatch}/>
-                                {!this.props.user && <Redirect to='/login' />}
+                                {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/pending' render={props => (
                             <div>
                                 <Pending onSubmit={this.handleLogout.bind(this)} />
-                                {!this.props.user && <Redirect to='/login' />}
+                                {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
                         )}/>
                         <Route exact path='/signup' render={props => (

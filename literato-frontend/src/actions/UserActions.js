@@ -51,6 +51,11 @@ export function handleCheckLogin(apiUrl){
                     dispatch (loadRequests(apiUrl, parsedResponse.user.id))
                 }
             })
+        } else{
+          dispatch({
+            type: 'FETCHED_USER_ERROR',
+            payload: "Please Log In"
+          })
         }
     })
 }
