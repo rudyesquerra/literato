@@ -30,12 +30,19 @@ const mapComponentToProps = (store) =>{
     }
 }
 
+var apiUrl
+if(process.env.NODE_ENV === 'production'){
+  apiUrl = ""
+} else {
+  apiUrl = "http://localhost:3000"
+}
+
 export default connect(mapComponentToProps)(
     class App extends Component {
         constructor(props) {
             super(props)
             this.state = {
-                apiUrl: 'http://localhost:3000',
+                apiUrl: apiUrl,
                 newBookSuccess: false,
             }
         }
@@ -90,10 +97,13 @@ export default connect(mapComponentToProps)(
                             </div>
                         )}/>
                       <Route exact path='/current-request' render={props => (
+                          <div>
+                                {!this.props.user && (!this.props.loading) && (this.props.currentRequest) && <Redirect to='/dashboard' />}
                             <div>
                                 <UserBookList currentRequest={this.props.currentRequest} user={this.props.currentRequest.user1} userBooks={this.props.user1Books} successMessage={this.props.successMessage} dispatch={this.props.dispatch}/>
                                 {!this.props.user && (!this.props.loading) && <Redirect to='/login' />}
                             </div>
+                          </div>
                         )}/>
                         <Route exact path='/pending' render={props => (
                             <div>

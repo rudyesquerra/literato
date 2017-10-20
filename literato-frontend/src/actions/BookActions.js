@@ -1,6 +1,13 @@
+var apiUrl
+if(process.env.NODE_ENV === 'production'){
+  apiUrl = ""
+} else {
+  apiUrl = "http://localhost:3000"
+}
+
 export function tradeBook(request, bookId){
   return ((dispatch) => {
-    fetch(`http://localhost:3000/requests/${request.id}`,
+    fetch(`${apiUrl}/requests/${request.id}`,
       {
           body: JSON.stringify({book1Id: bookId}),
           headers: {
@@ -21,7 +28,7 @@ export function tradeBook(request, bookId){
 }
 export function deleteBook(id) {
     return ((dispatch) => {
-        fetch('http://localhost:3000/books/destroy',
+        fetch(`${apiUrl}/books/destroy`,
             {
                 body: JSON.stringify({id: id}),
                 headers: {
@@ -44,7 +51,7 @@ export function deleteBook(id) {
 
 export function handleNewBook(params){
     return ((dispatch) => {
-        fetch('http://localhost:3000/books',
+        fetch(`${apiUrl}/books`,
             {
                 body: JSON.stringify(params),
                 headers: {

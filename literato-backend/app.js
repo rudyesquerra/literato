@@ -11,19 +11,20 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(validator())
 app.use(cors())
+app.use(express.static(path.resolve(__dirname,'../literato-frontend/build')))
 
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.json({message: 'API Example App'})
 });
 
-app.get('/books', (req, res) => {
+app.get('/api/books', (req, res) => {
     Book.findAll().then((books) => {
         res.status(200)
         res.json({books: books})
     })
 })
 
-app.get('/books/:userId', (req, res) => {
+app.get('/api/books/:userId', (req, res) => {
     Book.findAll({
         where: {
             userId: req.params["userId"]
@@ -34,7 +35,7 @@ app.get('/books/:userId', (req, res) => {
     })
 })
 
-app.get('/dbsearch/:title', (req, res) => {
+app.get('/api/dbsearch/:title', (req, res) => {
         function myFunction(path){
             var uri_dec = decodeURIComponent(path)
             return uri_dec
@@ -47,7 +48,7 @@ app.get('/dbsearch/:title', (req, res) => {
     })
 })
 
-app.post('/books', (req, res) => {
+app.post('/api/books', (req, res) => {
     req.checkBody('title', 'Is required').notEmpty()
     req.getValidationResult()
         .then((validationErrors) => {
@@ -60,12 +61,15 @@ app.post('/books', (req, res) => {
                     userId: req.body.userId
                 })
                 .then((book) => {
-                    Book.findAll().then((books) => {
-                        res.status(201)
-                        res.json({books: books, newBook: book})
+                    Book.findAll({
+                        where: {
+                            userId: req.body.userId
+                        }
+                    }).then((books)=>{
+                        res.status(200)
+                        res.json({books: books})
                     })
                 })
-
             }else {
                 res.status(400)
                 res.json({errors: {validations: validationErrors.array()}})
@@ -73,7 +77,7 @@ app.post('/books', (req, res) => {
         })
 })
 
-app.post('/user', (req, res) => {
+app.post('/api/user', (req, res) => {
     req.checkBody('authToken', 'Is required').notEmpty()
 
     req.getValidationResult()
@@ -100,7 +104,7 @@ app.post('/user', (req, res) => {
 })
 
 //for adding a user aka signup
-app.post('/signup', (req, res) => {
+app.post('/api/signup', (req, res) => {
   //checking that form is properly filled out
     req.checkBody('name', 'Is required').notEmpty()
     req.checkBody('email', 'Is required').notEmpty()
@@ -133,7 +137,7 @@ app.post('/signup', (req, res) => {
       })
 })
 //user login page - verify something has been entered to login fields
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     req.checkBody('email', 'Is required').notEmpty()
     req.checkBody('password', 'Is required').notEmpty()
     //verify correct email/pw for user
@@ -163,7 +167,7 @@ app.post('/login', (req, res) => {
         })
 })
 
-app.post('/books/destroy', (req, res) => {
+app.post('/api/books/destroy', (req, res) => {
     req.checkBody('id', 'Is required').notEmpty()
     Book.findById(req.body.id).then(function(book){
         book.destroy().then(function(book){
@@ -177,7 +181,7 @@ app.post('/books/destroy', (req, res) => {
     })
 })
 
-app.post('/requests/pending', (req, res) => {
+app.post('/api/requests/pending', (req, res) => {
                 Request.create({
                     user1Id: req.body.user1Id,
                     user2Id: req.body.user2Id,
@@ -191,7 +195,7 @@ app.post('/requests/pending', (req, res) => {
                 })
 })
 
-app.get('/requests/:user2Id', (req, res) => {
+app.get('/api/requests/:user2Id', (req, res) => {
     Request.findAll({
         where: {
             user2Id: req.params["user2Id"]
@@ -203,11 +207,11 @@ app.get('/requests/:user2Id', (req, res) => {
     })
 })
 
-app.put('/requests/:id', (req, res) => {
+app.put('/api/requests/:id', (req, res) => {
     Request.findById(req.params["id"]).then((request)=>{
-        request.save({
-            book1Id: req.body.book1Id
-        })
+        request.book1Id = req.params["id"]
+        //check if line above works
+        request.save()
     }).then((request) => {
         res.status(201)
         res.json({request: request})
@@ -218,5 +222,7 @@ app.put('/requests/:id', (req, res) => {
 })
 
 
-
+app.get('*', function(request, response){
+    response.sendFile(path.resolve(__dirname,.'../literato-frontend/build','index.html'))
+})
 module.exports = app

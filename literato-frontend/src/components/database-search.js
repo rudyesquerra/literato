@@ -91,6 +91,7 @@ export default connect(mapComponentToProps)(
  		}
  		event.preventDefault()
  		this.handleTradeRequest(trade)
+        document.getElementById('submitted').innerHTML = "Trade Request Submitted"
  	}
 
         render(){
@@ -103,7 +104,7 @@ export default connect(mapComponentToProps)(
                                 <h4 className="book-title">{books.title}</h4>
                                 <h5 className="book-authors">{books.authors}</h5>
                                 <h6 className="book-owner">Owned by {books.username}</h6>
-                                <Button onClick={this.handleSubmit.bind(this)} className="trade-book btn btn-default">
+                                <Button onClick={this.handleSubmit.bind(this)} className="trade-book btn btn-default" id="submitted">
                                 Trade Book
                                 </Button>
                                 </div>

@@ -17,7 +17,7 @@ export default (currentState=initialState, action) =>{
               {},
               currentState,
               {
-                successMessage: "Trade was complete",
+                successMessage: "Trade was complete - Go to dashboard",
               }
           )
           break;

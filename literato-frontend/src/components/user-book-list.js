@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
 import { deleteBook, tradeBook } from '../actions/BookActions'
 import { handleCheckLogin } from '../actions/UserActions'
+import { Link } from 'react-router-dom'
+
 
 class UserBookList extends Component {
 
@@ -68,7 +70,7 @@ class UserBookList extends Component {
                         })}
                     </ol>
                 }
-                {this.props.successMessage}
+                <Link to='/dashboard'>{this.props.successMessage}</Link>
             </div>
         )
     }
