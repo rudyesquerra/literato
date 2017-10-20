@@ -6,7 +6,7 @@ class Header extends Component {
         return(
             <header className="header">
                 <div className="logo-holder">
-                    <img className="App-logo" src="./literato-logo.png" />
+                    <img className="App-logo" alt="Literato logo" src="./literato-logo.png" />
                 </div>
             </header>
         )

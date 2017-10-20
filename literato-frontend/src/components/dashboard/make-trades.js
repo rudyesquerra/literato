@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { handleUserLogout } from '../../actions/UserActions'
 import Header from './header'
 import Sidebar from './sidebar'
 import DataBaseSearch from '../database-search.js'

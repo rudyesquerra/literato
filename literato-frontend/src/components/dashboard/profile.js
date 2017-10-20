@@ -1,7 +1,6 @@
 import React, { Component }from 'react'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-import { handleUserLogout } from '../../actions/UserActions'
 import Header from './header'
 import Sidebar from './sidebar'
 import UserBookList from '../user-book-list'

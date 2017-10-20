@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import ToggleDisplay from 'react-toggle-display';
 import BookTitle from './bookTitle'
 import BookDetails from './bookDetails';
-import { Redirect } from 'react-router-dom'
 import './searchResult.css'
-
 import {connect} from 'react-redux'
-
 import { handleNewBook } from '../../actions/BookActions'
 
 const mapComponentToProps = (store) =>{
@@ -46,10 +43,10 @@ export default connect(mapComponentToProps)(
 
         handleSubmit(event){
             let author;
-		        if(this.props.volumeInfo.authors == undefined){
+		        if(this.props.volumeInfo.authors === undefined){
 			        author = "No Authors Found"
 		        }else{
-		        author = this.props.volumeInfo.authors[0]
+		            author = this.props.volumeInfo.authors[0]
 		        }
             var newBook = {
                 title: this.props.volumeInfo.title,

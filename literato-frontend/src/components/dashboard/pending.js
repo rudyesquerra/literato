@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
-import { handleUserLogout, viewUserBooks } from '../../actions/UserActions'
+import { viewUserBooks } from '../../actions/UserActions'
 import Header from './header'
 import Sidebar from './sidebar'
 
@@ -14,9 +14,7 @@ const mapComponentToProps = (store) =>{
 }
 
 export default connect(mapComponentToProps)(
-
     class Pending extends Component {
-
 
         handleLogout(){
             this.props.onSubmit()
@@ -35,7 +33,7 @@ export default connect(mapComponentToProps)(
                         <Button bsStyle="link" className="sign-out-link" onClick={this.handleLogout.bind(this)}>Sign Out</Button>
                     <Sidebar />
                     <div className="trades">
-                        <ul>
+                        <ol>
                             {this.props.requests &&
                              this.props.requests.map((request, index) => {
                                 return(
@@ -49,7 +47,7 @@ export default connect(mapComponentToProps)(
                                     </li>
                                 )
                             })}
-                        </ul>
+                        </ol>
                     </div>
                 </div>
             )

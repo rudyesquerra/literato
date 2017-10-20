@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
 import './App.css';
 import Login from './components/login'
@@ -10,9 +9,7 @@ import Profile from './components/dashboard/profile'
 import Pending from './components/dashboard/pending'
 import MakeTrades from './components/dashboard/make-trades'
 import UserBookList from './components/user-book-list'
-
 import { handleCheckLogin, handleUserLogin, handleNewUser, handleUserLogout } from './actions/UserActions'
-import { deleteBook, loadBooks } from './actions/BookActions'
 import Dashboard from './components/dashboard/dashboard'
 
 

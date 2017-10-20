@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import { deleteBook, loadBooks, tradeBook } from '../actions/BookActions'
+import { deleteBook, tradeBook } from '../actions/BookActions'
 import { handleCheckLogin } from '../actions/UserActions'
 
 class UserBookList extends Component {
@@ -58,7 +58,7 @@ class UserBookList extends Component {
                             return(
                                 <li key={index} className="flex-item">
                                     <div>
-                                        <img src={userBooks.image}/>
+                                        <img alt="book" src={userBooks.image}/>
                                         <h4 className="book-title">{userBooks.title}</h4>
                                         <h5 className="book-authors">{userBooks.authors}</h5>
                                         {this.action(userBooks)}
