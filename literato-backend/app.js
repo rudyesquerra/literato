@@ -6,6 +6,7 @@ var Book = require('./models').Book
 var cors = require('cors')
 var User = require('./models').User
 var Request = require('./models').Request
+var path = require('path')
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
