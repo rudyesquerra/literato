@@ -223,6 +223,6 @@ app.put('/api/requests/:id', (req, res) => {
 
 
 app.get('*', function(request, response){
-    response.sendFile(path.resolve(__dirname,.'../literato-frontend/build','index.html'))
+    response.sendFile(path.resolve(__dirname,'../literato-frontend/build','index.html'))
 })
 module.exports = app
